@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Edit My Profile") }}{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+  <h2 class="mb-4">📝 {{ _("Edit Personal Information") }}</h2>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="alert alert-info mt-4">
+        {% for category, message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST" action="{{ url_for('merchant.edit_profile') }}" class="bg-white p-4 rounded shadow-sm w-100 w-md-50 mx-auto mt-4">
+    <div class="mb-3 text-start">
+      <label for="username" class="form-label">{{ _("Username") }}</label>
+      <input type="text" class="form-control" name="username" value="{{ user.username }}" required aria-label="Username">
+      {% if errors and errors.username %}
+        <div class="text-danger small mt-1">{{ errors.username[0] }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3 text-start">
+      <label for="email" class="form-label">{{ _("Email") }}</label>
+      <input type="email" class="form-control" name="email" value="{{ user.email }}" required aria-label="Email">
+      {% if errors and errors.email %}
+        <div class="text-danger small mt-1">{{ errors.email[0] }}</div>
+      {% endif %}
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">{{ _("Save Changes") }}</button>
+      <a href="{{ url_for('merchant.dashboard') }}" class="btn btn-secondary ms-2" aria-label="Cancel">{{ _("Cancel") }}</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

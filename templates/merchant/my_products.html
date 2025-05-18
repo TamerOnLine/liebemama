@@ -1,0 +1,80 @@
+{% extends 'admin_base.html' %}
+{% block title %}{{ _('Product Management') }}{% endblock %}
+
+{% block admin_content %}
+  <h2 class="text-center mb-4">{{ _('Product List') }}</h2>
+
+  <div class="mb-4 text-center">
+    <a href="{{ url_for('merchant.add_product') }}" class="btn btn-success">
+      <i class="bi bi-plus-circle"></i> {{ _('Add New Product') }}
+    </a>
+  </div>
+
+  {% if products %}
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle bg-white">
+        <thead class="table-light text-center">
+          <tr>
+            <th>{{ _('Image') }}</th>
+            <th>{{ _('Name') }}</th>
+            <th>{{ _('Price') }}</th>
+            <th>{{ _('Actions') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+            {% set main_image = None %}
+            {% if product.images is sequence and product.images | length > 0 %}
+              {% set main_image = product.images | selectattr('is_main') | list | first %}
+            {% endif %}
+
+            <tr class="text-center">
+              <td>
+                <img src="{{ main_image.image_url if main_image else url_for('static', filename='img/default.jpg') }}"
+                     alt="{{ product.name }}"
+                     class="img-fluid"
+                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 6px;">
+              </td>
+
+              <td>{{ product.name }}</td>
+              <td>{{ product.price }} €</td>
+              <td>
+                <a href="{{ url_for('merchant.edit_product', product_id=product.id) }}" class="btn btn-sm btn-primary mb-1">
+                  <i class="bi bi-pencil"></i> {{ _('Edit') }}
+                </a>
+
+                <a href="{{ url_for('product_images.manage_product_images', product_id=product.id) }}"
+                   class="btn btn-sm btn-outline-secondary mb-1">
+                  🖼 {{ _('Images') }}
+                </a>
+                <a href="{{ url_for('product_ai.analyze_product', product_id=product.id) }}"
+                  class="btn btn-sm btn-outline-info">
+                  🧠 {{ _('Analyze') }}
+                </a>
+
+
+                {% if product.is_approved %}
+                  <span class="badge bg-success">{{ _('Approved') }}</span>
+                {% else %}
+                  <span class="badge bg-warning text-dark">{{ _('Pending Approval') }}</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="text-center text-muted">{{ _('No products available at the moment.') }}</p>
+  {% endif %}
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="alert alert-info mt-4">
+        {% for category, message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+{% endblock %}

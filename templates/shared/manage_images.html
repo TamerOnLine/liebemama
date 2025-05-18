@@ -1,0 +1,58 @@
+{% extends 'admin_base.html' if session['role'] == 'admin' else 'merchant_base.html' %}
+
+
+{% block content %}
+  <h2 class="text-center mb-4">{{ _('Manage Images for') }}: {{ product.name }}</h2>
+
+  {% if product.images|length == 0 %}
+    <div class="alert alert-warning text-center">
+      🚫 لا توجد صور لهذا المنتج حتى الآن.
+    </div>
+  {% endif %}
+
+  <div class="row g-4">
+    {% for img in product.images %}
+      <div class="col-md-3 text-center">
+        <img src="{{ img.image_url }}" class="img-thumbnail mb-2" style="max-height: 150px;">
+
+        <form method="POST" action="{{ url_for('product_images.set_main_image', image_id=img.id) }}">
+          <button type="submit"
+                  class="btn btn-sm btn-outline-primary mt-2 w-100"
+                  {% if img.is_main %}disabled{% endif %}>
+            {% if img.is_main %}
+              ✅ {{ _('Main Image') }}
+            {% else %}
+              🖼 {{ _('Set as Main') }}
+            {% endif %}
+          </button>
+        </form>
+
+        <form method="POST" action="{{ url_for('product_images.delete_image', image_id=img.id) }}" onsubmit="return confirm('{{ _('Are you sure you want to delete this image?') }}');">
+          <button type="submit" class="btn btn-sm btn-outline-danger mt-2 w-100">
+            🗑 {{ _('Delete') }}
+          </button>
+        </form>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="mt-5">
+    <form method="POST" action="{{ url_for('product_images.upload_image', product_id=product.id) }}" enctype="multipart/form-data" class="text-center">
+      <label for="image" class="form-label">📤 {{ _('Upload New Image') }}</label>
+      <input type="file" name="image" id="image" class="form-control mb-2" accept="image/*" required>
+      <button type="submit" class="btn btn-success">➕ {{ _('Add Image') }}</button>
+    </form>
+  </div>
+
+  <div class="mt-4 text-center">
+    {% if session['role'] == 'admin' %}
+      <a href="{{ url_for('admin.admin_products') }}" class="btn btn-secondary">
+        ⬅️ {{ _('Back to Products') }}
+      </a>
+    {% elif session['role'] == 'merchant' %}
+      <a href="{{ url_for('merchant.my_products') }}" class="btn btn-secondary">
+        ⬅️ {{ _('Back to My Products') }}
+      </a>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="mb-0 text-muted">📁 Achievement Log</h2>
+  <a href="{{ url_for('notifications.show_notifications') }}" class="btn btn-sm btn-outline-primary">
+    🔙 Back to Notifications
+  </a>
+</div>
+
+{% if notifications %}
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle bg-white shadow-sm">
+      <thead class="table-light text-center">
+        <tr>
+          <th>Type</th>
+          <th>Message</th>
+          <th>User</th>
+          <th>Product/Order</th>
+          <th>Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for note in notifications %}
+          <tr class="text-center table-secondary">
+            <td>
+              {% if note.type == 'success' %}
+                ✅
+              {% elif note.type == 'error' %}
+                ❌
+              {% elif note.type == 'warning' %}
+                ⚠️
+              {% elif note.type == 'product_edited' %}
+                ✏️
+              {% else %}
+                ℹ️
+              {% endif %}
+            </td>
+            <td class="text-start">{{ note.message }}</td>
+            <td>
+              {% if note.user_id %}
+                👤 #{{ note.user_id }}
+              {% else %}
+                -
+              {% endif %}
+            </td>
+            <td>
+              {% if note.product_id %}
+                🧾 Product #{{ note.product_id }}<br>
+              {% endif %}
+              {% if note.order_id %}
+                📦 Order #{{ note.order_id }}
+              {% endif %}
+            </td>
+            <td>{{ note.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td>
+              <form method="POST" action="{{ url_for('notifications.restore_notification', note_id=note.id) }}" onsubmit="return confirm('Are you sure you want to restore this notification?');">
+                <button type="submit" class="btn btn-sm btn-outline-success" aria-label="Restore notification">
+                  👁️ Show
+                </button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <p class="text-muted text-center">No archived notifications available.</p>
+{% endif %}

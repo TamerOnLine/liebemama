@@ -1,0 +1,27 @@
+body {
+  background-color: #f8f9fa;
+  font-family: 'Cairo', sans-serif;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.active-link {
+  background-color: #0d6efd;
+  color: white;
+}
+
+/* ✅ إخفاء النصوص بجانب الرموز عند الشاشات الصغيرة */
+@media (max-width: 768px) {
+  .nav-label {
+    display: none !important;
+  }
+}
+
+/* 🔧 ضبط موضع القائمة المنسدلة عند اتجاه RTL */
+html[dir="rtl"] .dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+    text-align: right;
+}

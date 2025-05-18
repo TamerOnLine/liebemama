@@ -1,0 +1,36 @@
+{% extends "admin_base.html" %}
+
+{% block title %}إعدادات النظام{% endblock %}
+
+{% block content %}
+<h2>⚙️ إعدادات النظام</h2>
+
+<a href="{{ url_for('admin_settings.add_setting') }}" class="btn btn-primary mb-3">➕ إضافة إعداد جديد</a>
+
+<table class="table table-bordered" dir="ltr">
+    <thead>
+        <tr>
+            <th>المفتاح</th>
+            <th>القيمة</th>
+            <th>إجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for setting in settings %}
+        <tr>
+            <td>{{ setting.key }}</td>
+            <td>
+                {% if 'SECRET' in setting.key or 'PASSWORD' in setting.key %}
+                    ****** <!-- إخفاء القيم الحساسة -->
+                {% else %}
+                    {{ setting.value }}
+                {% endif %}
+            </td>
+            <td>
+                <a href="{{ url_for('admin_settings.edit_setting', setting_id=setting.id) }}" class="btn btn-sm btn-warning">تعديل</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

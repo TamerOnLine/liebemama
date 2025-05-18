@@ -1,0 +1,418 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: de\n"
+
+# Translations template for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-05-14 21:23+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: templates/admin_base.html:17
+msgid "MyProduct"
+msgstr "MyProduct"
+
+#: templates/admin_base.html:21 templates/admin_base.html:25
+#: templates/admin_base.html:29 templates/base.html:19 templates/base.html:21
+#: templates/base.html:23
+msgid "Dashboard"
+msgstr "Armaturenbrett"
+
+#: templates/admin_base.html:38 templates/base.html:31
+#: templates/visitor_base.html:36
+msgid "Notifications"
+msgstr "Benachrichtigungen"
+
+#: templates/admin_base.html:47 templates/base.html:40 templates/base.html:44
+#: templates/visitor_base.html:45
+msgid "Logout"
+msgstr "Abmelden"
+
+#: templates/admin_base.html:52 templates/base.html:52
+#: templates/merchant_base.html:32 templates/visitor_base.html:58
+msgid "Language"
+msgstr "Sprache"
+
+#: templates/base.html:6
+msgid "My Website"
+msgstr "Meine Website"
+
+#: templates/base.html:16
+msgid "MyStore"
+msgstr "Mystore"
+
+#: templates/auth/register.html:50 templates/base.html:47
+#: templates/visitor_base.html:52
+msgid "Register"
+msgstr "Registrieren"
+
+#: templates/index.html:3
+msgid "All Products"
+msgstr "Alle Produkte"
+
+#: templates/index.html:14 templates/shared/product_form.html:34
+msgid "Product Image"
+msgstr "Produktbild"
+
+#: templates/index.html:23
+msgid "View Details"
+msgstr "Details anzeigen"
+
+#: templates/index.html:31
+msgid "No products available to display at the moment."
+msgstr "Derzeit werden keine Produkte zur Verfügung stehen."
+
+#: templates/visitor_base.html:6
+msgid "Our Products"
+msgstr "Unsere Produkte"
+
+#: templates/merchant/dashboard.html:2 templates/merchant/dashboard.html:6
+#: templates/visitor_base.html:19
+msgid "Merchant Dashboard"
+msgstr "Händler -Armaturenbrett"
+
+#: templates/auth/dashboard.html:2 templates/visitor_base.html:23
+msgid "Customer Dashboard"
+msgstr "Kunden Dashboard"
+
+#: templates/admin/dashboard.html:2 templates/admin/dashboard.html:6
+#: templates/visitor_base.html:27
+msgid "Admin Dashboard"
+msgstr "Admin -Dashboard"
+
+#: templates/admin/dashboard.html:7 templates/auth/dashboard.html:6
+#: templates/merchant/dashboard.html:7 templates/visitor_base.html:33
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: templates/auth/login.html:2 templates/auth/login.html:5
+#: templates/auth/login.html:30 templates/visitor_base.html:49
+msgid "Login"
+msgstr "Login"
+
+#: templates/visitor_base.html:75
+msgid "All Rights Reserved"
+msgstr "Alle Rechte vorbehalten"
+
+#: templates/admin/add_product.html:2 templates/admin/add_product.html:5
+#: templates/admin/admin_products.html:9 templates/admin/dashboard.html:14
+#: templates/merchant/add_product.html:2 templates/merchant/add_product.html:5
+msgid "Add New Product"
+msgstr "Neues Produkt hinzufügen"
+
+#: templates/admin/admin_products.html:2
+msgid "Product Management"
+msgstr "Produktmanagement"
+
+#: templates/admin/admin_products.html:5
+msgid "Product List"
+msgstr "Produktliste"
+
+#: templates/admin/admin_products.html:18
+#: templates/merchant/my_products.html:22
+msgid "Image"
+msgstr "Bild"
+
+#: templates/admin/admin_products.html:19 templates/auth/profile.html:11
+#: templates/merchant/my_products.html:23
+msgid "Name"
+msgstr "Name"
+
+#: templates/admin/admin_products.html:20
+#: templates/merchant/my_products.html:24 templates/shared/product_form.html:10
+msgid "Price"
+msgstr "Preis"
+
+#: templates/admin/admin_products.html:21
+#: templates/merchant/my_products.html:26
+msgid "Actions"
+msgstr "Aktionen"
+
+#: templates/admin/admin_products.html:34
+#: templates/merchant/my_products.html:46
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: templates/admin/admin_products.html:37
+msgid "Are you sure you want to delete this product?"
+msgstr "Sind Sie sicher, dass Sie dieses Produkt löschen möchten?"
+
+#: templates/admin/admin_products.html:39
+msgid "Delete"
+msgstr "Löschen"
+
+#: templates/admin/admin_products.html:46
+msgid "Approve"
+msgstr "Genehmigen"
+
+#: templates/admin/admin_products.html:50
+#: templates/merchant/my_products.html:39
+msgid "Approved"
+msgstr "Genehmigt"
+
+#: templates/admin/admin_products.html:59
+msgid "No products available at the moment."
+msgstr "Im Moment keine Produkte erhältlich."
+
+#: templates/admin/dashboard.html:11
+msgid "Manage Products"
+msgstr "Produkte verwalten"
+
+#: templates/admin/dashboard.html:17 templates/admin/system_links.html:2
+#: templates/admin/system_links.html:5
+msgid "System Links"
+msgstr "Systemverbindungen"
+
+#: templates/admin/edit_product.html:2 templates/admin/edit_product.html:5
+#: templates/merchant/edit_product.html:2
+#: templates/merchant/edit_product.html:5
+msgid "Edit Product"
+msgstr "Produkt bearbeiten"
+
+#: templates/admin/system_links.html:9
+msgid "Database"
+msgstr "Datenbank"
+
+#: templates/admin/system_links.html:14
+msgid "App Deployment"
+msgstr "App -Bereitstellung"
+
+#: templates/admin/system_links.html:19
+msgid "Media Library"
+msgstr "Medienbibliothek"
+
+#: templates/admin/system_links.html:24
+msgid "Monitoring"
+msgstr "Überwachung"
+
+#: templates/auth/dashboard.html:7
+msgid "Welcome to your customer dashboard."
+msgstr "Willkommen in Ihrem Kunden Dashboard."
+
+#: templates/auth/dashboard.html:21 templates/auth/profile.html:2
+#: templates/auth/profile.html:6 templates/merchant/dashboard.html:28
+#: templates/merchant/profile.html:2
+msgid "My Profile"
+msgstr "Mein Profil"
+
+#: templates/auth/edit_profile.html:2 templates/merchant/edit_profile.html:2
+msgid "Edit My Profile"
+msgstr "Bearbeiten Sie mein Profil"
+
+#: templates/auth/edit_profile.html:6 templates/auth/profile.html:31
+#: templates/merchant/profile.html:39
+msgid "Edit Profile"
+msgstr "Profil bearbeiten"
+
+#: templates/auth/edit_profile.html:19
+msgid "Edit Personal Info"
+msgstr "Persönliche Informationen bearbeiten"
+
+#: templates/auth/edit_profile.html:22 templates/auth/register.html:16
+msgid "Email Address"
+msgstr "E-Mail-Adresse"
+
+#: templates/auth/edit_profile.html:30 templates/auth/register.html:24
+#: templates/merchant/edit_profile.html:20 templates/merchant/profile.html:20
+msgid "Username"
+msgstr "Benutzername"
+
+#: templates/auth/edit_profile.html:38 templates/merchant/edit_profile.html:36
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
+#: templates/auth/edit_profile.html:42
+msgid "Are you sure you want to delete your account?"
+msgstr "Sind Sie sicher, dass Sie Ihr Konto löschen möchten?"
+
+#: templates/auth/edit_profile.html:43
+msgid "Delete Account"
+msgstr "Konto löschen"
+
+#: templates/auth/login.html:15
+msgid "Email or Username"
+msgstr "E -Mail oder Benutzername"
+
+#: templates/auth/login.html:23 templates/auth/register.html:32
+msgid "Password"
+msgstr "Passwort"
+
+#: templates/auth/login.html:35
+msgid "Don't have an account? Sign up"
+msgstr "Sie haben kein Konto? Melden Sie sich an"
+
+#: templates/auth/profile.html:15 templates/merchant/edit_profile.html:28
+#: templates/merchant/profile.html:24
+msgid "Email"
+msgstr "E-Mail"
+
+#: templates/auth/profile.html:19 templates/merchant/profile.html:28
+msgid "Role"
+msgstr "Rolle"
+
+#: templates/auth/profile.html:23 templates/merchant/profile.html:32
+msgid "Created At"
+msgstr "Erstellt at"
+
+#: templates/auth/register.html:2
+msgid "Sign Up"
+msgstr "Melden Sie sich an"
+
+#: templates/auth/register.html:6
+msgid "Sign Up for a New Account"
+msgstr "Melden Sie sich für ein neues Konto an"
+
+#: templates/auth/register.html:40
+msgid "Account Type"
+msgstr "Kontotyp"
+
+#: templates/auth/register.html:42
+msgid "Customer"
+msgstr "Kunde"
+
+#: templates/auth/register.html:43
+msgid "Merchant"
+msgstr "Händler"
+
+#: templates/errors/401.html:40
+msgid "Please log in to access this page"
+msgstr "Bitte melden Sie sich an, um auf diese Seite zuzugreifen"
+
+#: templates/errors/401.html:44 templates/errors/403.html:30
+msgid "Log In"
+msgstr "Einloggen"
+
+#: templates/errors/401.html:47 templates/errors/validation_error.html:55
+msgid "Go to Homepage"
+msgstr "Gehen Sie zur Homepage"
+
+#: templates/errors/403.html:5
+msgid "403 - Forbidden"
+msgstr "403 - Verboten"
+
+#: templates/errors/403.html:25
+msgid "You don't have permission to access this page"
+msgstr "Sie haben keine Erlaubnis, auf diese Seite zuzugreifen"
+
+#: templates/errors/403.html:26
+msgid "Please log in as an admin or return to the homepage."
+msgstr "Bitte melden Sie sich als Administrator an oder kehren Sie zur Homepage zurück."
+
+#: templates/errors/403.html:34 templates/errors/404.html:30
+#: templates/errors/500.html:30
+msgid "Return to Homepage"
+msgstr "Kehre zur Homepage zurück"
+
+#: templates/errors/404.html:5
+msgid "404 - Page Not Found"
+msgstr "404 - Seite nicht gefunden"
+
+#: templates/errors/404.html:25
+msgid "Page Not Found"
+msgstr "Seite nicht gefunden"
+
+#: templates/errors/404.html:26
+msgid "Sorry, the page you're looking for is not available."
+msgstr "Entschuldigung, die Seite, die Sie suchen, ist nicht verfügbar."
+
+#: templates/errors/500.html:5
+msgid "500 - Internal Server Error"
+msgstr "500 - Interner Serverfehler"
+
+#: templates/errors/500.html:25
+msgid "An Unexpected Error Occurred"
+msgstr "Ein unerwarteter Fehler trat auf"
+
+#: templates/errors/500.html:26
+msgid "We apologize for the inconvenience, and we will fix the issue soon."
+msgstr "Wir entschuldigen uns für die Unannehmlichkeiten und werden das Problem bald beheben."
+
+#: templates/errors/validation_error.html:5
+msgid "Validation Error"
+msgstr "Validierungsfehler"
+
+#: templates/errors/validation_error.html:37
+msgid "Validation Failed"
+msgstr "Validierung fehlgeschlagen"
+
+#: templates/errors/validation_error.html:38
+msgid "Please review the following errors and try again:"
+msgstr "Bitte überprüfen Sie die folgenden Fehler und versuchen Sie es erneut:"
+
+#: templates/errors/validation_error.html:54
+msgid "Back"
+msgstr "Zurück"
+
+#: templates/merchant/dashboard.html:8
+msgid "From here, you can manage your store's products."
+msgstr "Von hier aus können Sie die Produkte Ihres Geschäfts verwalten."
+
+#: templates/merchant/dashboard.html:22 templates/merchant/my_products.html:2
+#: templates/merchant/my_products.html:5
+msgid "My Products"
+msgstr "Meine Produkte"
+
+#: templates/merchant/dashboard.html:25 templates/shared/product_form.html:44
+msgid "Add Product"
+msgstr "Produkt hinzufügen"
+
+#: templates/merchant/edit_profile.html:6
+msgid "Edit Personal Information"
+msgstr "Persönliche Informationen bearbeiten"
+
+#: templates/merchant/edit_profile.html:37
+msgid "Cancel"
+msgstr "Stornieren"
+
+#: templates/merchant/my_products.html:25
+msgid "Status"
+msgstr "Status"
+
+#: templates/merchant/my_products.html:41
+msgid "Pending approval"
+msgstr "Ausstehende Genehmigung"
+
+#: templates/merchant/my_products.html:55
+msgid "No products available currently."
+msgstr "Derzeit keine Produkte erhältlich."
+
+#: templates/merchant/profile.html:6
+msgid "My Personal Information"
+msgstr "Meine persönlichen Daten"
+
+#: templates/shared/product_form.html:2
+msgid "Product Name"
+msgstr "Produktname"
+
+#: templates/shared/product_form.html:3
+msgid "Enter product name"
+msgstr "Geben Sie den Produktnamen ein"
+
+#: templates/shared/product_form.html:18
+msgid "Description"
+msgstr "Beschreibung"
+
+#: templates/shared/product_form.html:19
+msgid "Enter product description"
+msgstr "Geben Sie die Produktbeschreibung ein"
+
+#: templates/shared/product_form.html:26
+msgid "Specifications"
+msgstr "Spezifikationen"
+
+#: templates/shared/product_form.html:27
+msgid "Enter product specifications"
+msgstr "Produktspezifikationen eingeben"

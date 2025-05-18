@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Admin Dashboard') }}{% endblock %}
+
+{% block content %}
+<div class="text-center">
+  <h2 class="mb-4">🛠️ {{ _('Admin Dashboard') }}</h2>
+  <p class="lead">{{ _('Welcome') }}, {{ session['username'] }} (Admin)</p>
+
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-4 mb-3">
+      <a href="{{ url_for('admin.admin_products') }}" class="btn btn-outline-primary w-100 py-3">🧾 {{ _('Manage Products') }}</a>
+    </div>
+    <div class="col-md-4 mb-3">
+      <a href="{{ url_for('admin.admin_add_product') }}" class="btn btn-outline-success w-100 py-3">➕ {{ _('Add New Product') }}</a>
+    </div>
+    <div class="col-md-4 mb-3">
+      <a href="{{ url_for('admin.system_links') }}" class="btn btn-outline-danger w-100 py-3">🔗 {{ _('System Links') }}</a>
+    </div>
+    <div class="col-md-4 mb-3">
+  <a href="{{ url_for('admin_settings.settings_list') }}" class="btn btn-outline-warning w-100 py-3">⚙️ إعدادات النظام</a>
+</div>
+
+  </div>
+</div>
+{% endblock %}

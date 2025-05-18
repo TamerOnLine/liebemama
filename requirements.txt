@@ -1,0 +1,14 @@
+Flask
+Flask-SQLAlchemy
+python-dotenv
+Werkzeug
+psycopg2-binary
+gunicorn
+
+bcrypt
+cerberus
+bleach
+flask-babel
+deep-translator
+Filerobot 
+minio

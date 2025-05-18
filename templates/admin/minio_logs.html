@@ -1,0 +1,32 @@
+{% extends 'admin_base.html' %}
+{% block title %}MinIO Logs{% endblock %}
+
+{% block admin_content %}
+  <h2 class="mb-4">🧾 سجل عمليات MinIO</h2>
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>التاريخ</th>
+        <th>العملية</th>
+        <th>الحالة</th>
+        <th>التفاصيل</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for log in logs %}
+        <tr>
+          <td>{{ log.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+          <td>{{ log.action }}</td>
+          <td>
+            {% if log.status == 'success' %}
+              ✅ نجاح
+            {% else %}
+              ❌ خطأ
+            {% endif %}
+          </td>
+          <td>{{ log.details or '' }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

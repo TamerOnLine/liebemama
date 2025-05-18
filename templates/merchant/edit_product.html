@@ -1,0 +1,27 @@
+{% extends 'merchant_base.html' %}
+{% block title %}{{ _("Edit Product") }}{% endblock %}
+
+{% block content %}
+
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
+
+  <h2 class="mb-4 text-center">{{ _("Edit Product") }}</h2>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="alert alert-info mt-4">
+        {% for category, message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm w-100 w-md-50 mx-auto mt-4">
+    {% include 'shared/product_form.html' %}
+  </form>
+
+
+
+{% endblock %}

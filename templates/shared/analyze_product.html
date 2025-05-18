@@ -1,0 +1,16 @@
+{% extends 'admin_base.html' if session['role'] == 'admin' else 'merchant_base.html' %}
+
+{% block content %}
+  <h2 class="mb-4">🧠 {{ _('Nutritional Analysis') }} – {{ product.name }}</h2>
+
+  <div class="mb-3">
+    <label class="form-label">{{ _('Description') }}</label>
+    <div class="p-3 bg-light rounded border">{{ product.description or _('No description available.') }}</div>
+  </div>
+
+  <div class="text-center mt-4">
+    <button class="btn btn-outline-primary" disabled>
+      ⏳ {{ _('Generate AI Analysis (coming soon)') }}
+    </button>
+  </div>
+{% endblock %}

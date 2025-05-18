@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ _('My Profile') }}{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+  <h2 class="mb-4">👤 {{ _('My Profile') }}</h2>
+
+  <table class="table table-bordered bg-white w-100 w-md-50 mx-auto">
+    <thead>
+      <tr>
+        <th scope="col">{{ _('Name') }}</th>
+        <td>{{ user.username }}</td>
+      </tr>
+      <tr>
+        <th scope="col">{{ _('Email') }}</th>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr>
+        <th scope="col">{{ _('Role') }}</th>
+        <td>{{ user.role }}</td>
+      </tr>
+      <tr>
+        <th scope="col">{{ _('Created At') }}</th>
+        <td>{{ user.created_at.strftime('%Y-%m-%d') }}</td>
+      </tr>
+    </thead>
+  </table>
+
+  <div class="text-center my-3">
+    <a href="{{ url_for('user_auth.edit_profile') }}" class="btn btn-outline-secondary">
+      ✏️ {{ _('Edit Profile') }}
+    </a>
+  </div>
+</div>
+{% endblock %}

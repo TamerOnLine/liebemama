@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Login') }}{% endblock %}
+
+{% block content %}
+<h3 class="text-center mb-4">{{ _('Login') }}</h3>
+
+{% if error %}
+  <div class="alert alert-danger text-center" role="alert">
+    {{ error }}
+  </div>
+{% endif %}
+
+<form method="POST" class="w-50 mx-auto">
+  <div class="mb-3">
+    <label class="form-label" for="email">{{ _('Email or Username') }}</label>
+    <input type="text" name="email" id="email" class="form-control" value="{{ request.form.email or '' }}" required>
+    {% if errors and errors.email %}
+      <div class="text-danger small mt-1">{{ errors.email[0] }}</div>
+    {% endif %}
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="password">{{ _('Password') }}</label>
+    <input type="password" name="password" id="password" class="form-control" required>
+    {% if errors and errors.password %}
+      <div class="text-danger small mt-1">{{ errors.password[0] }}</div>
+    {% endif %}
+  </div>
+
+  <button type="submit" class="btn btn-success w-100">{{ _('Login') }}</button>
+</form>
+
+<div class="text-center mt-3">
+  <a href="{{ url_for('user_auth.register') }}">
+    {{ _('Don\'t have an account? Sign up') }}
+  </a>
+</div>
+{% endblock %}

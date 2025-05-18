@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Sign Up') }}{% endblock %}
+
+{% block content %}
+<div class="container w-50 mt-4">
+  <h3 class="mb-4 text-center">{{ _('Sign Up for a New Account') }}</h3>
+
+  {% if error %}
+    <div class="alert alert-danger text-center" role="alert">
+      {{ error }}
+    </div>
+  {% endif %}
+
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label" for="email">{{ _('Email Address') }}</label>
+      <input type="email" name="email" id="email" class="form-control" value="{{ request.form.email or '' }}" required>
+      {% if errors and errors.email %}
+        <div class="text-danger small mt-1">{{ errors.email[0] }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="username">{{ _('Username') }}</label>
+      <input type="text" name="username" id="username" class="form-control" value="{{ request.form.username or '' }}" required>
+      {% if errors and errors.username %}
+        <div class="text-danger small mt-1">{{ errors.username[0] }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="password">{{ _('Password') }}</label>
+      <input type="password" name="password" id="password" class="form-control" required>
+      {% if errors and errors.password %}
+        <div class="text-danger small mt-1">{{ errors.password[0] }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="role">{{ _('Account Type') }}</label>
+      <select name="role" id="role" class="form-select" required>
+        <option value="customer" {% if request.form.role == "customer" %}selected{% endif %}>{{ _('Customer') }}</option>
+        <option value="merchant" {% if request.form.role == "merchant" %}selected{% endif %}>{{ _('Merchant') }}</option>
+      </select>
+      {% if errors and errors.role %}
+        <div class="text-danger small mt-1">{{ errors.role[0] }}</div>
+      {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">{{ _('Register') }}</button>
+  </form>
+</div>
+{% endblock %}

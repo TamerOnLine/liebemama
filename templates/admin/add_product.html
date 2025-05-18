@@ -1,0 +1,27 @@
+{% extends 'admin_base.html' %}
+{% block title %}{{ _('Add New Product') }}{% endblock %}
+
+{% block admin_content %}
+
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
+
+  <h2 class="mb-4 text-center">{{ _('Add New Product') }}</h2>
+
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for field, messages in errors.items() %}
+          <li>{{ field }}: {{ messages | join(', ') }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <form method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm">
+    {% include 'shared/product_form.html' %}
+  </form>
+
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "admin_base.html" %}
+
+{% block title %}تعديل إعداد{% endblock %}
+
+{% block content %}
+<h2>🛠️ تعديل الإعداد</h2>
+
+<form method="post" dir="ltr">
+    <div class="form-group">
+        <label>المفتاح:</label>
+        <input type="text" class="form-control" value="{{ setting.key }}" disabled>
+    </div>
+    <div class="form-group">
+        <label>القيمة:</label>
+        <input type="text" class="form-control" name="value" value="{{ setting.value }}">
+    </div>
+    <button type="submit" class="btn btn-success">💾 حفظ التغييرات</button>
+    <a href="{{ url_for('admin_settings.settings_list') }}" class="btn btn-secondary">↩️ إلغاء</a>
+</form>
+{% endblock %}

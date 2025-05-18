@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{{ _("Merchant Dashboard") }}{% endblock %}
+
+{% block content %}
+  <div class="text-center">
+    <h2 class="mb-4">📦 {{ _("Merchant Dashboard") }}</h2>
+    <p class="lead">{{ _("Welcome") }}, {{ username }} 👋</p>
+    <p>{{ _("From here, you can manage your store's products.") }}</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alert alert-info mt-4">
+          {% for category, message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-4 mb-3">
+        <a href="{{ url_for('merchant.my_products') }}" class="btn btn-outline-primary w-100 py-3">🧾 {{ _("My Products") }}</a>
+      </div>
+      <div class="col-md-4 mb-3">
+        <a href="{{ url_for('merchant.add_product') }}" class="btn btn-outline-success w-100 py-3">➕ {{ _("Add Product") }}</a>
+      </div>
+      <div class="col-md-4 mb-3">
+        <a href="{{ url_for('merchant.profile') }}" class="btn btn-outline-secondary w-100 py-3">👤 {{ _("My Profile") }}</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

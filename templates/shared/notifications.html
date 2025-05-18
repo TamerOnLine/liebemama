@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="mb-0">🔔 Notifications</h2>
+  <div class="d-flex gap-2">
+    <a href="{{ url_for('notifications.notification_archive') }}" class="btn btn-sm btn-outline-secondary">
+      📁 View Achievement Log
+    </a>
+
+    {% if session['role'] == 'admin' %}
+      <a href="{{ url_for('admin.admin_dashboard') }}" class="btn btn-sm btn-outline-primary">⬅️ Back</a>
+    {% elif session['role'] == 'merchant' %}
+      <a href="{{ url_for('merchant.dashboard') }}" class="btn btn-sm btn-outline-primary">⬅️ Back</a>
+    {% else %}
+      <a href="{{ url_for('products.index') }}" class="btn btn-sm btn-outline-primary">⬅️ Back</a>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="alert alert-info mt-4">
+      {% for category, message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+{% if notifications %}
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle bg-white shadow-sm">
+      <thead class="table-light text-center">
+        <tr>
+          <th>Type</th>
+          <th>Message</th>
+          <th>User</th>
+          <th>Product/Order</th>
+          <th>Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for note in notifications %}
+          <tr class="text-center {% if not note.is_read %}table-warning{% endif %}">
+            <td>
+              {% if note.type == 'success' %}
+                ✅
+              {% elif note.type == 'error' %}
+                ❌
+              {% elif note.type == 'warning' %}
+                ⚠️
+              {% elif note.type == 'product_edited' %}
+                ✏️
+              {% else %}
+                ℹ️
+              {% endif %}
+            </td>
+            <td class="text-start">{{ note.message }}</td>
+            <td>
+              {% if note.user_id %}
+                👤 #{{ note.user_id }}
+              {% else %}
+                -
+              {% endif %}
+            </td>
+            <td>
+              {% if note.product_id %}
+                🧾 Product #{{ note.product_id }}<br>
+              {% endif %}
+              {% if note.order_id %}
+                📦 Order #{{ note.order_id }}
+              {% endif %}
+            </td>
+            <td>{{ note.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td>
+              <!-- Hide notification form with confirmation -->
+              <form method="POST" action="{{ url_for('notifications.hide_notification', note_id=note.id) }}" onsubmit="return confirm('Are you sure you want to hide this notification?');">
+                <button type="submit" class="btn btn-sm btn-outline-secondary" aria-label="Hide notification">
+                  🗑️ Hide
+                </button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <p class="text-muted text-center">No notifications to display at the moment.</p>
+{% endif %}

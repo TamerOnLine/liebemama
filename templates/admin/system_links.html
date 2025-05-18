@@ -1,0 +1,44 @@
+{% extends 'admin_base.html' %}
+{% block title %}{{ _('System Links') }}{% endblock %}
+
+{% block admin_content %}
+  <h2 class="mb-4">🔗 {{ _('System Links') }}</h2>
+  <ul class="list-group" style="line-height: 2;">
+    <li class="list-group-item">
+      <a href="https://console.neon.tech/..." target="_blank" rel="noopener noreferrer" class="d-flex align-items-center">
+        <span class="mr-2">📦</span> neon – {{ _('Database') }}
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://dashboard.render.com/" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center">
+        <span class="mr-2">🚀</span> Render – {{ _('App Deployment') }}
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://console.cloudinary.com/..." target="_blank" rel="noopener noreferrer" class="d-flex align-items-center">
+        <span class="mr-2">🖼️</span> Cloudinary – {{ _('Media Library') }}
+      </a>
+    </li>
+    <li class="list-group-item">
+      <a href="https://dashboard.uptimerobot.com/monitors" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center">
+        <span class="mr-2">📡</span> UptimeRobot – {{ _('Monitoring') }}
+      </a>
+    </li>
+
+    <li class="list-group-item">
+  <a href="{{ url_for('admin.minio_logs') }}" class="d-flex align-items-center">
+    <span class="mr-2">🧾</span> عرض سجل عمليات MinIO
+  </a>
+</li>
+
+    <h2>🗂️ إدارة Bucket MinIO</h2>
+
+<form action="{{ url_for('admin.create_minio_bucket') }}" method="post" style="margin-bottom: 10px;">
+  <button type="submit" class="btn btn-success">✅ إنشاء الـ Bucket إذا لم يكن موجودًا</button>
+</form>
+
+<form action="{{ url_for('admin.delete_minio_bucket') }}" method="post" onsubmit="return confirm('⚠️ هل أنت متأكد أنك تريد حذف الـ Bucket وكل ملفاته؟');">
+  <button type="submit" class="btn btn-danger">🗑️ حذف الـ Bucket مع الملفات</button>
+</form>
+  </ul>
+{% endblock %}

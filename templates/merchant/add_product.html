@@ -1,0 +1,48 @@
+{% extends 'merchant_base.html' %}
+{% block title %}{{ _("Add New Product") }}{% endblock %}
+
+{% block content %}
+
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
+
+  <h2 class="mb-4 text-center">{{ _("Add New Product") }}</h2>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="alert alert-info mt-4">
+        {% for category, message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        {% for field, messages in errors.items() %}
+          <li>{{ field }}: {{ messages | join(', ') }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  {% for product in products %}
+  <tr>
+    <td colspan="4" style="color:red">
+      اسم المنتج: {{ product.name }}<br>
+      عدد الصور: {{ product.images | length }}<br>
+      {% for img in product.images %}
+        - {{ img.image_url }} | main = {{ img.is_main }}<br>
+      {% endfor %}
+    </td>
+  </tr>
+{% endfor %}
+
+
+  <form method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm w-100 w-md-50 mx-auto mt-4">
+    {% include 'shared/product_form.html' %}
+  </form>
+
+
+{% endblock %}

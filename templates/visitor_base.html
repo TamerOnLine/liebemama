@@ -1,36 +1,34 @@
+
 <!DOCTYPE html>
 <html lang="{{ get_locale() }}" dir="{{ 'rtl' if get_locale() == 'ar' else 'ltr' }}">
-
 <head>
   <meta charset="UTF-8" />
-  <title>{% block title %}{{ _("Our Products") }}{% endblock %}</title>
+  <title>{% block title %}{{ _('Our Products') }}{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
   <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
 </head>
-
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container d-flex justify-content-between align-items-center">
-      {% if session.get('role') == 'merchant' %}
+      {% if current_user.is_authenticated and current_user.role == 'merchant' %}
         <a class="navbar-brand text-primary {% if request.endpoint == 'merchant.dashboard' %}active-link{% endif %}" href="{{ url_for('merchant.dashboard') }}">
-          🛠️ {{ _("Merchant Dashboard") }}
+          🛠️ {{ _('Merchant Dashboard') }}
         </a>
-      {% elif session.get('role') == 'customer' %}
+      {% elif current_user.is_authenticated and current_user.role == 'customer' %}
         <a class="navbar-brand text-primary {% if request.endpoint == 'user_auth.dashboard' %}active-link{% endif %}" href="{{ url_for('user_auth.dashboard') }}">
-          🛠️ {{ _("Customer Dashboard") }}
+          🛠️ {{ _('Customer Dashboard') }}
         </a>
-      {% elif session.get('role') == 'admin' %}
+      {% elif current_user.is_authenticated and current_user.role == 'admin' %}
         <a class="navbar-brand text-primary {% if request.endpoint == 'admin.admin_dashboard' %}active-link{% endif %}" href="{{ url_for('admin.admin_dashboard') }}">
-          🛠️ {{ _("Admin Dashboard") }}
+          🛠️ {{ _('Admin Dashboard') }}
         </a>
       {% endif %}
 
       <div class="d-flex align-items-center">
-        {% if session.get('username') %}
-          <span class="text-primary me-3">{{ _("Welcome") }}, {{ session['username'] }}</span>
+        {% if current_user.is_authenticated %}
+          <span class="text-primary me-3">{{ _('Welcome') }}, {{ current_user.username }}</span>
 
           <a href="{{ url_for('notifications.show_notifications') }}" class="nav-link position-relative me-3">
             🔔 <span class="nav-label">{{ _('Notifications') }}</span>
@@ -46,10 +44,10 @@
           </a>
         {% else %}
           <a href="{{ url_for('user_auth.login') }}" class="btn btn-outline-primary btn-sm me-2">
-            {{ _("Login") }}
+            {{ _('Login') }}
           </a>
           <a href="{{ url_for('user_auth.register') }}" class="btn btn-primary btn-sm me-3">
-            {{ _("Register") }}
+            {{ _('Register') }}
           </a>
         {% endif %}
 
@@ -72,14 +70,12 @@
   </div>
 
   <footer class="text-center mt-5 mb-3 text-muted">
-    &copy; <span id="current-year"></span> - {{ _("All Rights Reserved") }}
+    &copy; <span id="current-year"></span> - {{ _('All Rights Reserved') }}
   </footer>
 
   <script>
     document.getElementById("current-year").textContent = new Date().getFullYear();
   </script>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

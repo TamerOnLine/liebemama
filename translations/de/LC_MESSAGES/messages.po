@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-14 21:23+0200\n"
+"POT-Creation-Date: 2025-05-18 16:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,15 +63,11 @@ msgstr "Registrieren"
 msgid "All Products"
 msgstr "Alle Produkte"
 
-#: templates/index.html:14 templates/shared/product_form.html:34
-msgid "Product Image"
-msgstr "Produktbild"
-
-#: templates/index.html:23
+#: templates/index.html:25
 msgid "View Details"
 msgstr "Details anzeigen"
 
-#: templates/index.html:31
+#: templates/index.html:33
 msgid "No products available to display at the moment."
 msgstr "Derzeit werden keine Produkte zur Verfügung stehen."
 
@@ -107,63 +103,76 @@ msgstr "Login"
 msgid "All Rights Reserved"
 msgstr "Alle Rechte vorbehalten"
 
-#: templates/admin/add_product.html:2 templates/admin/add_product.html:5
+#: templates/admin/add_product.html:2 templates/admin/add_product.html:9
 #: templates/admin/admin_products.html:9 templates/admin/dashboard.html:14
-#: templates/merchant/add_product.html:2 templates/merchant/add_product.html:5
+#: templates/merchant/add_product.html:2 templates/merchant/add_product.html:9
+#: templates/merchant/my_products.html:9
 msgid "Add New Product"
 msgstr "Neues Produkt hinzufügen"
 
-#: templates/admin/admin_products.html:2
+#: templates/admin/admin_products.html:2 templates/merchant/my_products.html:2
 msgid "Product Management"
 msgstr "Produktmanagement"
 
-#: templates/admin/admin_products.html:5
+#: templates/admin/admin_products.html:5 templates/merchant/my_products.html:5
 msgid "Product List"
 msgstr "Produktliste"
 
 #: templates/admin/admin_products.html:18
-#: templates/merchant/my_products.html:22
+#: templates/merchant/my_products.html:18
 msgid "Image"
 msgstr "Bild"
 
 #: templates/admin/admin_products.html:19 templates/auth/profile.html:11
-#: templates/merchant/my_products.html:23
+#: templates/merchant/my_products.html:19
 msgid "Name"
 msgstr "Name"
 
 #: templates/admin/admin_products.html:20
-#: templates/merchant/my_products.html:24 templates/shared/product_form.html:10
+#: templates/merchant/my_products.html:20 templates/shared/product_form.html:12
 msgid "Price"
 msgstr "Preis"
 
 #: templates/admin/admin_products.html:21
-#: templates/merchant/my_products.html:26
+#: templates/merchant/my_products.html:21
 msgid "Actions"
 msgstr "Aktionen"
 
-#: templates/admin/admin_products.html:34
-#: templates/merchant/my_products.html:46
+#: templates/admin/admin_products.html:42
+#: templates/merchant/my_products.html:43
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: templates/admin/admin_products.html:37
+#: templates/admin/admin_products.html:45
+#: templates/merchant/my_products.html:48
+msgid "Images"
+msgstr "Bilder"
+
+#: templates/admin/admin_products.html:49
+#: templates/merchant/my_products.html:52
+msgid "Analyze"
+msgstr "Analysieren"
+
+#: templates/admin/admin_products.html:55
 msgid "Are you sure you want to delete this product?"
 msgstr "Sind Sie sicher, dass Sie dieses Produkt löschen möchten?"
 
-#: templates/admin/admin_products.html:39
+#: templates/admin/admin_products.html:57
+#: templates/shared/manage_images.html:32
 msgid "Delete"
 msgstr "Löschen"
 
-#: templates/admin/admin_products.html:46
+#: templates/admin/admin_products.html:64
 msgid "Approve"
 msgstr "Genehmigen"
 
-#: templates/admin/admin_products.html:50
-#: templates/merchant/my_products.html:39
+#: templates/admin/admin_products.html:68
+#: templates/merchant/my_products.html:57
 msgid "Approved"
 msgstr "Genehmigt"
 
-#: templates/admin/admin_products.html:59
+#: templates/admin/admin_products.html:77
+#: templates/merchant/my_products.html:68
 msgid "No products available at the moment."
 msgstr "Im Moment keine Produkte erhältlich."
 
@@ -176,9 +185,9 @@ msgstr "Produkte verwalten"
 msgid "System Links"
 msgstr "Systemverbindungen"
 
-#: templates/admin/edit_product.html:2 templates/admin/edit_product.html:5
+#: templates/admin/edit_product.html:2 templates/admin/edit_product.html:6
 #: templates/merchant/edit_product.html:2
-#: templates/merchant/edit_product.html:5
+#: templates/merchant/edit_product.html:9
 msgid "Edit Product"
 msgstr "Produkt bearbeiten"
 
@@ -360,12 +369,11 @@ msgstr "Zurück"
 msgid "From here, you can manage your store's products."
 msgstr "Von hier aus können Sie die Produkte Ihres Geschäfts verwalten."
 
-#: templates/merchant/dashboard.html:22 templates/merchant/my_products.html:2
-#: templates/merchant/my_products.html:5
+#: templates/merchant/dashboard.html:22
 msgid "My Products"
 msgstr "Meine Produkte"
 
-#: templates/merchant/dashboard.html:25 templates/shared/product_form.html:44
+#: templates/merchant/dashboard.html:25
 msgid "Add Product"
 msgstr "Produkt hinzufügen"
 
@@ -377,42 +385,75 @@ msgstr "Persönliche Informationen bearbeiten"
 msgid "Cancel"
 msgstr "Stornieren"
 
-#: templates/merchant/my_products.html:25
-msgid "Status"
-msgstr "Status"
-
-#: templates/merchant/my_products.html:41
-msgid "Pending approval"
+#: templates/merchant/my_products.html:59
+msgid "Pending Approval"
 msgstr "Ausstehende Genehmigung"
-
-#: templates/merchant/my_products.html:55
-msgid "No products available currently."
-msgstr "Derzeit keine Produkte erhältlich."
 
 #: templates/merchant/profile.html:6
 msgid "My Personal Information"
 msgstr "Meine persönlichen Daten"
 
+#: templates/shared/analyze_product.html:4
+msgid "Nutritional Analysis"
+msgstr "Ernährungsanalyse"
+
+#: templates/shared/analyze_product.html:7
+#: templates/shared/product_form.html:21
+msgid "Description"
+msgstr "Beschreibung"
+
+#: templates/shared/analyze_product.html:8
+msgid "No description available."
+msgstr "Keine Beschreibung verfügbar."
+
+#: templates/shared/analyze_product.html:13
+msgid "Generate AI Analysis (coming soon)"
+msgstr "AI -Analyse erzeugen (bald kommt)"
+
+#: templates/shared/manage_images.html:5
+msgid "Manage Images for"
+msgstr "Bilder verwalten für"
+
+#: templates/shared/manage_images.html:23
+msgid "Main Image"
+msgstr "Hauptbild"
+
+#: templates/shared/manage_images.html:25
+msgid "Set as Main"
+msgstr "Als maßgeblich eingestellt"
+
+#: templates/shared/manage_images.html:30
+msgid "Are you sure you want to delete this image?"
+msgstr "Sind Sie sicher, dass Sie dieses Bild löschen möchten?"
+
+#: templates/shared/manage_images.html:41
+msgid "Upload New Image"
+msgstr "Laden Sie neues Bild hoch"
+
+#: templates/shared/manage_images.html:43
+msgid "Add Image"
+msgstr "Bild hinzufügen"
+
+#: templates/shared/manage_images.html:50
+msgid "Back to Products"
+msgstr "Zurück zu Produkten"
+
+#: templates/shared/manage_images.html:54
+msgid "Back to My Products"
+msgstr "Zurück zu meinen Produkten"
+
 #: templates/shared/product_form.html:2
 msgid "Product Name"
 msgstr "Produktname"
 
-#: templates/shared/product_form.html:3
+#: templates/shared/product_form.html:5
 msgid "Enter product name"
 msgstr "Geben Sie den Produktnamen ein"
-
-#: templates/shared/product_form.html:18
-msgid "Description"
-msgstr "Beschreibung"
-
-#: templates/shared/product_form.html:19
-msgid "Enter product description"
-msgstr "Geben Sie die Produktbeschreibung ein"
 
 #: templates/shared/product_form.html:26
 msgid "Specifications"
 msgstr "Spezifikationen"
 
-#: templates/shared/product_form.html:27
-msgid "Enter product specifications"
-msgstr "Produktspezifikationen eingeben"
+#: templates/shared/product_form.html:32
+msgid "➕ Save Product"
+msgstr "➕ Produkt speichern"

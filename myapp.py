@@ -1,17 +1,17 @@
 import os
 import getpass
 from datetime import datetime
-
 from flask import Flask, render_template, session, request, redirect, url_for
 from dotenv import load_dotenv
+from flask_babel import Babel
+from flask_login import LoginManager
+from sqlalchemy import inspect
 
-from models.models_definitions import db, User
+from models.models_definitions import db, User, ErrorLog
 from routes import register_routes, register_error_handlers
 from config.logging_config import setup_logging
-from flask_babel import Babel
-from flask_babel import get_locale as babel_get_locale
 
-# تحميل ملف البيئة (للاستخدام مرة واحدة فقط)
+# تحميل متغيرات البيئة
 load_dotenv()
 babel = Babel()
 
@@ -22,43 +22,64 @@ def select_locale():
 
 def create_app():
     app = Flask(__name__)
-
-    # إعدادات عامة
     app.config['TRAP_HTTP_EXCEPTIONS'] = True
     app.config['PROPAGATE_EXCEPTIONS'] = True
-
-    # مسار رفع الملفات
     app.config['UPLOAD_FOLDER'] = os.path.join('/tmp', 'uploads')
     app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 
-    # إعداد قاعدة البيانات من .env
     database_url = os.getenv('DATABASE_URL')
     if not database_url:
         raise RuntimeError("DATABASE_URL not found in .env")
     app.config['SQLALCHEMY_DATABASE_URI'] = database_url
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    # تهيئة الإضافات
     setup_logging(app)
     babel.init_app(app, locale_selector=select_locale)
     app.jinja_env.globals['get_locale'] = select_locale
     db.init_app(app)
 
-    # تسجيل الراوتات ومعالجات الأخطاء
     register_routes(app)
     register_error_handlers(app)
 
-    return app
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = "user_auth.login"
 
+    @login_manager.user_loader
+    def load_user(user_id):
+        return db.session.get(User, int(user_id))
+
+    return app
 
 
 app = create_app()
 
 
+@app.errorhandler(Exception)
+def handle_exception(e):
+
+    import traceback
+    tb = traceback.format_exc()
+
+    error_log = ErrorLog(
+        endpoint=request.path,
+        method=request.method,
+        user_id=session.get("user_id"),
+        role=session.get("role"),
+        error_type=type(e).__name__,
+        message=str(e),
+        traceback_text=tb
+    )
+    db.session.add(error_log)
+    db.session.commit()
+
+    return render_template("errors/500.html", error_message=str(e)), 500
+
+
 @app.route("/set_language/<lang>")
 def set_language(lang):
     session["lang"] = lang
-    return redirect(request.referrer or url_for("index"))
+    return redirect(request.referrer or url_for("products.index"))
 
 
 @app.context_processor
@@ -69,7 +90,7 @@ def inject_current_year():
 @app.context_processor
 def inject_globals():
     return {
-        'site_brand': 'منتجي'
+        'site_brand': os.getenv("SITE_NAME", "منتجي")
     }
 
 
@@ -100,7 +121,6 @@ def create_super_admin_if_needed():
         return
 
     password = getpass.getpass("Enter password (input hidden): ").strip()
-
     admin = User(username=username, email=email, role='admin')
     admin.set_password(password)
     db.session.add(admin)
@@ -113,35 +133,15 @@ if __name__ == '__main__':
     debug_mode = os.getenv('FLASK_DEBUG', '1') == '1'
     port = int(os.getenv('FLASK_PORT', '1705'))
 
-    app = create_app()
-
     with app.app_context():
-        from sqlalchemy import inspect
         inspector = inspect(db.engine)
 
-        # ✅ أنشئ الجداول فقط إذا لم تكن موجودة
         if 'settings' not in inspector.get_table_names():
             db.create_all()
 
-        # ✅ بعد وجود الجداول حمّل الإعدادات
-        from logic.settings_utils import populate_env_file_settings, load_all_settings
-        populate_env_file_settings(".env")
-        load_all_settings(app)
+
         app.secret_key = app.config.get("cv_kay", "fallback-secret")
 
-        # ✅ أنشئ حساب مشرف إذا لم يوجد
-        from models.models_definitions import User
-        if not User.query.filter_by(role='admin').first():
-            from getpass import getpass
-            username = input("Super Admin Username: ")
-            email = input("Email: ")
-            password = getpass("Password: ")
-            admin = User(username=username, email=email, role='admin')
-            admin.set_password(password)
-            db.session.add(admin)
-            db.session.commit()
+        create_super_admin_if_needed()
 
     app.run(debug=debug_mode, host='0.0.0.0', port=port)
-
-
-

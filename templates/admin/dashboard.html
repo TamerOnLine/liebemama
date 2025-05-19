@@ -1,10 +1,11 @@
-{% extends "base.html" %}
+{% extends "admin_base.html" %}
+
 {% block title %}{{ _('Admin Dashboard') }}{% endblock %}
 
 {% block content %}
 <div class="text-center">
   <h2 class="mb-4">🛠️ {{ _('Admin Dashboard') }}</h2>
-  <p class="lead">{{ _('Welcome') }}, {{ session['username'] }} (Admin)</p>
+  <p class="lead">{{ _('Welcome') }}, {{ session.get('username', 'Admin') }} (Admin)</p>
 
   <div class="row justify-content-center mt-4">
     <div class="col-md-4 mb-3">
@@ -16,9 +17,6 @@
     <div class="col-md-4 mb-3">
       <a href="{{ url_for('admin.system_links') }}" class="btn btn-outline-danger w-100 py-3">🔗 {{ _('System Links') }}</a>
     </div>
-    <div class="col-md-4 mb-3">
-  <a href="{{ url_for('admin_settings.settings_list') }}" class="btn btn-outline-warning w-100 py-3">⚙️ إعدادات النظام</a>
-</div>
 
   </div>
 </div>

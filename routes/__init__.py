@@ -10,8 +10,7 @@ from routes.test_errors import test_errors_bp
 from routes.product_images_view import product_images_bp
 from routes.product_ai import product_ai_bp
 # from routes.minio_client import minio_client, MINIO_BUCKET, MINIO_BASE_URL
-from routes.admin_settings_view import admin_settings_bp
-
+from logic.error_utils import log_error_to_db
 
 def register_routes(app):
     """
@@ -38,7 +37,7 @@ def register_routes(app):
     app.register_blueprint(test_errors_bp)  # Test routes for error handling (useful in dev mode)
     app.register_blueprint(product_images_bp)
     app.register_blueprint(product_ai_bp)
-    app.register_blueprint(admin_settings_bp)
+
 
 
 def register_error_handlers(app):
@@ -80,3 +79,8 @@ def register_error_handlers(app):
     def page_not_found(e):
         app.logger.warning("🔍 404 Page Not Found", exc_info=True)
         return render_template("errors/404.html"), 404
+
+    @app.errorhandler(BuildError)
+    def handle_build_error(e):
+        log_error_to_db(e)
+        return render_template("errors/500.html", error_message="Invalid route or URL"), 500

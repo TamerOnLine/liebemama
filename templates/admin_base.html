@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <title>{% block title %}Dashboard{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
@@ -14,25 +13,25 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand me-3" href="{{ url_for('products.index') }}">📦 {{ _("MyProduct") }}</a>
+      <a class="navbar-brand me-3" href="{{ url_for('products.index') }}">📦 {{ _('MyProduct') }}</a>
 
-      {% if session.get('role') == 'merchant' %}
+      {% if current_user.is_authenticated and current_user.role == 'merchant' %}
         <a class="navbar-brand text-white {% if request.endpoint == 'merchant.dashboard' %}active-link{% endif %}" href="{{ url_for('merchant.dashboard') }}">
-          🛠️ {{ _("Dashboard") }}
+          🛠️ {{ _('Dashboard') }}
         </a>
-      {% elif session.get('role') == 'customer' %}
+      {% elif current_user.is_authenticated and current_user.role == 'customer' %}
         <a class="navbar-brand text-white {% if request.endpoint == 'user_auth.dashboard' %}active-link{% endif %}" href="{{ url_for('user_auth.dashboard') }}">
-          🛠️ {{ _("Dashboard") }}
+          🛠️ {{ _('Dashboard') }}
         </a>
-      {% elif session.get('role') == 'admin' %}
+      {% elif current_user.is_authenticated and current_user.role == 'admin' %}
         <a class="navbar-brand text-white {% if request.endpoint == 'admin.admin_dashboard' %}active-link{% endif %}" href="{{ url_for('admin.admin_dashboard') }}">
-          🛠️ {{ _("Dashboard") }}
+          🛠️ {{ _('Dashboard') }}
         </a>
       {% endif %}
 
       <div class="d-flex">
-        {% if session['username'] %}
-          <span class="text-white me-3">Hello, {{ session['username'] }}</span>
+        {% if current_user.is_authenticated %}
+          <span class="text-white me-3">Hello, {{ current_user.username }}</span>
 
           <a href="{{ url_for('notifications.show_notifications') }}" class="nav-link position-relative">
             🔔 <span class="nav-label">{{ _('Notifications') }}</span>
@@ -66,7 +65,6 @@
     {% block admin_content %}
       {% block content %}{% endblock %}
     {% endblock %}
-
   </div>
 
   <footer class="text-center mt-5 mb-3 text-muted">
@@ -74,7 +72,6 @@
   </footer>
 
   <script>
-    // Mark notifications as read when clicked (optional functionality)
     document.querySelector('a[href="{{ url_for("notifications.show_notifications") }}"]').addEventListener('click', function () {
       fetch('/notifications/mark_as_read', {
         method: 'POST',
@@ -84,5 +81,4 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

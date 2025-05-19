@@ -1,146 +1,167 @@
-# 🛍️ MyStore
+# 🛍️ LiebeMama - Product Management System
 
 [![Flask](https://img.shields.io/badge/Framework-Flask-blue)](https://flask.palletsprojects.com/)
-[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql\&logoColor=white)](https://www.postgresql.org/)
-[![Cloudinary](https://img.shields.io/badge/Media-Cloudinary-3448C5?logo=cloudinary\&logoColor=white)](https://cloudinary.com/)
-[![Render](https://img.shields.io/badge/Deployed%20on-Render-46C1F6?logo=render\&logoColor=white)](https://render.com/)
+[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![MinIO](https://img.shields.io/badge/Storage-MinIO-orange)](https://min.io/)
+[![Render](https://img.shields.io/badge/Deployed%20on-Render-46C1F6?logo=render&logoColor=white)](https://render.com/)
+
+---
 
 ## 🎯 Overview
 
-A robust and professional **Product Management System** built with Python (Flask), PostgreSQL, and Cloudinary. It features a multi-role interface (Admin / Merchant / Customer), product approval workflows, dynamic notifications, and Arabic RTL support.
+LiebeMama is a professional multi-role **Product Management System** built with **Python Flask**, **PostgreSQL**, and **MinIO**. It supports Admin, Merchant, and Customer roles with secure image handling, dynamic approval workflows, and multilingual support.
 
 ---
 
 ## 🚀 Features
 
-* 🔒 Role-based login: Admin, Merchant, Customer
-* ➕ Add, edit, delete, and approve products with rich text and image upload
-* ✅ Dynamic product approval and notification system
-* 🖼️ Cloudinary integration for secure and optimized image hosting
-* 📨 Real-time notification flow for product tasks
-* 🌐 Full Arabic RTL interface via Flask-Babel (i18n)
-* 🧼 Form validation and input sanitization
-* 📊 Admin dashboard and merchant portal
-* 🛠️ Reset DB, seed accounts, test error pages (dev only)
+- 🔐 **Role-based authentication** (Admin, Merchant, Customer)
+- 📦 **Product management** (Add, Edit, Delete, Approve)
+- 📤 **Image uploads** via MinIO (secure & organized)
+- ✅ **Approval flow** from merchant to admin
+- 🔔 **Real-time notifications** with visibility control
+- 🌐 **i18n** via Flask-Babel (Arabic 🇸🇦, German 🇩🇪)
+- 🧼 **Form validation** and XSS protection
+- 📊 Admin & Merchant dashboards
+- 📁 Archived notification logs (achievement history)
+- 🛠️ **Database reset & seed tools** for development
 
 ---
 
-## 🧱 Project Structure
+## 🗂️ Project Structure
 
-```
-tameronline-pro_product_pg/
-├── myapp.py               # Main entry point (Flask app)
-├── config.py              # App configuration
-├── models/                # SQLAlchemy Models (User, Product, Notification)
-├── routes/                # Route blueprints: auth, admin, merchant, reset, etc.
-├── logic/                 # Notifications, validation, flow control
-├── templates/             # Jinja2 HTML templates
-├── static/                # CSS and media folders
-├── render.yaml            # Deployment file for Render.com
-├── requirements.txt       # Python dependencies
-└── .env                   # Environment config (locally)
+```text
+tameronline-liebemama/
+├── myapp.py             # App entrypoint
+├── routes/              # Blueprints (admin, merchant, auth, products, etc.)
+├── models/              # SQLAlchemy models
+├── logic/               # Core logic: validation, notifications, settings
+├── templates/           # Jinja2 templates (multilingual, role-based)
+├── static/              # CSS, images
+├── scripts/             # Utilities (auto logger, DB reset, etc.)
+├── config/              # Logging & configuration
+├── translations/        # Flask-Babel language files
+├── requirements.txt     # Python dependencies
+├── render.yaml          # Render deployment file
+├── .env                 # Local environment config
 ```
 
 ---
 
 ## ⚙️ Setup Instructions
 
-### 1. Clone the repository:
+### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/tameronline-pro_product_pg.git
-cd tameronline-pro_product_pg
+git clone https://github.com/your-username/tameronline-liebemama.git
+cd tameronline-liebemama
 ```
 
-### 2. Create a virtual environment:
+### 2. Create virtual environment
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-### 3. Install dependencies:
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Set environment variables:
+### 4. Setup `.env` file
 
-Create a `.env` file in the root:
-
-```env
-cv_kay=your_secret_key_here
-DATABASE_URL=your_postgresql_url
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
+```ini
+DATABASE_URL=your_postgres_url
+MINIO_ENDPOINT=your_minio_endpoint
+MINIO_ACCESS_KEY=your_minio_access_key
+MINIO_SECRET_KEY=your_minio_secret_key
+MINIO_BASE_URL=https://files.liebemama.com/
+MINIO_BUCKET_ADMIN=admin-product
+MINIO_BUCKET_MERCHANT=merchant-product
+cv_kay=your_flask_secret
 TINYMCE_API_KEY=your_tinymce_key
 ```
 
-### 5. Initialize the database:
+### 5. Initialize the database
 
 ```bash
 python init_db.py
 ```
 
-### 6. Run the app:
+### 6. Run the app
 
 ```bash
 python myapp.py
 ```
 
-Visit: [http://localhost:8030](http://localhost:8030)
+Then visit: [http://localhost:1705](http://localhost:1705)
 
 ---
 
-## 🧪 Development Tools
+## 👤 Default Roles
 
-* `/test-errors/401` or `/test-errors/500`: Simulate error pages
-* `/dev/reset`: Wipe and recreate DB in development mode
-* Logging stored in: `logs/error.log`
+Use the built-in method to create your first Super Admin:
 
----
-
-## 👤 Default Roles (on fresh DB)
-
-Use `create_super_admin_if_needed()` to generate first admin.
+```bash
+python myapp.py  # will prompt if no admin exists
+```
 
 ---
 
-## 📦 Deployment (Render.com)
+## 🌍 Multilingual Support
 
-Deployment is configured via `render.yaml`:
-
-* PostgreSQL + Gunicorn + Cloudinary
-* Environment variables are auto-synced
-* `startCommand: gunicorn myapp:app`
+- Default: Arabic (RTL)
+- Supported: `ar`, `de`, `en`
+- Change via `/set_language/ar`, `/set_language/en`, etc.
 
 ---
 
-## 📌 To-Do / Roadmap
+## 🧪 Dev Utilities
 
-* [x] Add multilingual support
-* [x] Enable product categories
-* [x] Implement cart system
-* [x] Create REST API
-* [ ] Customer order flow
-* [ ] Stripe/PayPal integration
+- Reset DB (dev): `GET /dev/reset`
+- Admin Reset: `POST /admin/reset_db`
+- Test errors: `/test-errors/401`, `/403`, `/404`, `/500`
+- Logs: Stored in `logs/error.log`
 
 ---
 
-## 🌐 UI Language
+## 📌 Roadmap
 
-This project defaults to **Arabic (RTL)**. Language switching can be implemented using Flask-Babel’s `locale_selector_func`.
+- [x] Notifications Archive (Achievement Log)
+- [x] Admin Setting Panel
+- [x] Image Manager per product
+- [x] Nutrition Analysis (UI)
+- [ ] Stripe/PayPal integration
+- [ ] RESTful API (Public + Authenticated)
+- [ ] Shopping Cart & Order Workflow
 
 ---
 
-## 📝 License
+## ☁️ Deployment (Render.com)
+
+> Fully configured via `render.yaml`
+
+- Auto-start with: `gunicorn myapp:app`
+- PostgreSQL managed by Render
+- `.env` loaded from Render dashboard
+
+---
+
+## 📜 License
 
 MIT License – Free for personal and educational use.
 
 ---
 
-## 💡 Author
+## 👨‍💻 Author
 
-**TamerOnline** – [LinkedIn](https://www.linkedin.com/in/tameronline/) | [GitHub](https://github.com/TamerOnLine)
+**TamerOnline**  
+[GitHub](https://github.com/TamerOnLine) | [LinkedIn](https://www.linkedin.com/in/tameronline)
+
+---
+
+## 🌐 Live Demo (optional)
+
+> Coming soon on: https://www.liebemama.com/

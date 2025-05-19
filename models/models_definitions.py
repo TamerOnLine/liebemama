@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
@@ -43,7 +44,7 @@ class Product(db.Model):
             self.product_code = f"USR{self.merchant_id:06d}-PRO{sequence:03d}"
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     """Database model for users.
 
     Attributes:
@@ -175,15 +176,7 @@ class NutritionalAnalysis(db.Model):
 
 
 
-class Setting(db.Model):
-    __tablename__ = 'settings'
 
-    id = db.Column(db.Integer, primary_key=True)
-    key = db.Column(db.String(100), unique=True, nullable=False)
-    value = db.Column(db.Text, nullable=True)
-
-    def __repr__(self):
-        return f"<Setting {self.key}={self.value}>"
 
 
 from datetime import datetime
@@ -200,3 +193,17 @@ class AdminLog(db.Model):
 
     def __repr__(self):
         return f"<AdminLog {self.action} - {self.status}>"
+
+
+class ErrorLog(db.Model):
+    __tablename__ = 'error_logs'
+
+    id = db.Column(db.Integer, primary_key=True)
+    endpoint = db.Column(db.String(255))
+    method = db.Column(db.String(10))
+    user_id = db.Column(db.Integer, nullable=True)
+    role = db.Column(db.String(20), nullable=True)
+    error_type = db.Column(db.String(100))
+    message = db.Column(db.Text)
+    traceback_text = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)

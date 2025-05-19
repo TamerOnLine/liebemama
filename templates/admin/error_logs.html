@@ -1,0 +1,47 @@
+{% extends 'admin_base.html' %}
+{% block title %}🧾 سجل الأخطاء{% endblock %}
+
+{% block admin_content %}
+  <h2 class="mb-4 text-center">🧾 سجل الأخطاء</h2>
+
+  {% if logs %}
+    <div class="table-responsive">
+      <table class="table table-bordered table-sm table-hover">
+        <thead class="table-light text-center">
+          <tr>
+            <th>#</th>
+            <th>المسار</th>
+            <th>الطريقة</th>
+            <th>نوع الخطأ</th>
+            <th>المستخدم</th>
+            <th>التاريخ</th>
+            <th>الرسالة</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for log in logs %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td><code>{{ log.endpoint }}</code></td>
+              <td>{{ log.method }}</td>
+              <td><strong>{{ log.error_type }}</strong></td>
+              <td>{{ log.role or '-' }} (ID: {{ log.user_id or '-' }})</td>
+              <td>{{ log.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+              <td>
+  <div class="d-flex align-items-start gap-2">
+    <pre id="msg-{{ log.id }}" style="white-space: pre-wrap;" class="mb-0 text-muted">{{ log.message }}</pre>
+    <button class="btn btn-sm btn-outline-secondary" onclick="copyToClipboard('msg-{{ log.id }}')">📋</button>
+  </div>
+</td>
+
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center">
+      لا يوجد أخطاء مسجلة حتى الآن.
+    </div>
+  {% endif %}
+{% endblock %}

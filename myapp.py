@@ -26,7 +26,7 @@ def create_app():
     app.config['PROPAGATE_EXCEPTIONS'] = True
     app.config['UPLOAD_FOLDER'] = os.path.join('/tmp', 'uploads')
     app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
-
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'fallback-secret')
     database_url = os.getenv('DATABASE_URL')
     if not database_url:
         raise RuntimeError("DATABASE_URL not found in .env")

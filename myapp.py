@@ -27,9 +27,16 @@ def create_app():
     app.config['UPLOAD_FOLDER'] = os.path.join('/tmp', 'uploads')
     app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'fallback-secret')
-    database_url = os.getenv('DATABASE_URL')
+
+    # ✅ تحميل متغيرات MINIO و SITE_NAME من البيئة إلى app.config
+    for key, value in os.environ.items():
+        if key.startswith("MINIO_") or key in ["DATABASE_URL", "SITE_NAME"]:
+            app.config[key] = value
+
+    database_url = app.config.get('DATABASE_URL')
     if not database_url:
         raise RuntimeError("DATABASE_URL not found in .env")
+
     app.config['SQLALCHEMY_DATABASE_URI'] = database_url
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -57,7 +64,6 @@ app = create_app()
 
 @app.errorhandler(Exception)
 def handle_exception(e):
-
     import traceback
     tb = traceback.format_exc()
 
@@ -135,13 +141,7 @@ if __name__ == '__main__':
 
     with app.app_context():
         inspector = inspect(db.engine)
-
-        if 'settings' not in inspector.get_table_names():
-            db.create_all()
-
-
         app.secret_key = app.config.get("SECRET_KEY", "fallback-secret")
-
         create_super_admin_if_needed()
 
     app.run(debug=debug_mode, host='0.0.0.0', port=port)

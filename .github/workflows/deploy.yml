@@ -3,32 +3,29 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - main  # Trigger deployment only when pushing to the main branch
+      - main  # or "main", depending on your default branch
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # GitHub runner environment
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # Get the repository's latest code
+      uses: actions/checkout@v3
 
-    - name: Setup SSH key
+    - name: Set up SSH key
       run: |
         mkdir -p ~/.ssh
-        echo "${{ secrets.GH_DEPLOY_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-      # Uses a secret SSH private key stored in GitHub repository secrets
-
-    - name: Add server to known_hosts
-      run: |
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
         ssh-keyscan -H 78.47.205.8 >> ~/.ssh/known_hosts
-      # Adds the server to known hosts to avoid manual confirmation
 
-    - name: Deploy via SSH
+    - name: Pull code and restart service
       run: |
-        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@78.47.205.8 << 'EOF'
-          cd /opt/liebemama  # Change this to your actual project directory
-          git pull
-          systemctl restart liebemama  # Replace with your actual systemd service name
+        ssh root@78.47.205.8 << 'EOF'
+          cd /root/liebemama
+          git pull origin master
+          source venv/bin/activate
+          pip install -r requirements.txt
+          systemctl restart liebemama
         EOF

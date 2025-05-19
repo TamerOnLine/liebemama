@@ -90,7 +90,7 @@ def inject_current_year():
 @app.context_processor
 def inject_globals():
     return {
-        'site_brand': os.getenv("SITE_NAME", "منتجي")
+        'site_brand': os.getenv("SITE_NAME", "My products")
     }
 
 
@@ -140,7 +140,7 @@ if __name__ == '__main__':
             db.create_all()
 
 
-        app.secret_key = app.config.get("cv_kay", "fallback-secret")
+        app.secret_key = app.config.get("SECRET_KEY", "fallback-secret")
 
         create_super_admin_if_needed()
 

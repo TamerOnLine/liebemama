@@ -12,4 +12,5 @@ flask-babel
 deep-translator
 Filerobot 
 minio
+geoip2
 

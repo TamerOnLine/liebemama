@@ -141,7 +141,7 @@ if __name__ == '__main__':
 
     with app.app_context():
         inspector = inspect(db.engine)
-        app.secret_key = app.config.get("SECRET_KEY", "fallback-secret")
+
         create_super_admin_if_needed()
 
     app.run(debug=debug_mode, host='0.0.0.0', port=port)

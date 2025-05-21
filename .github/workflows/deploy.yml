@@ -1,31 +1,41 @@
-name: Deploy to Server
+name: Auto Deploy to Server
 
 on:
   push:
     branches:
-      - main  # or "main", depending on your default branch
+      - main  # Trigger on push to main branch
 
 jobs:
   deploy:
+    name: Deploy via SSH to Hetzner
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-    - name: Set up SSH key
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-        chmod 600 ~/.ssh/id_ed25519
-        ssh-keyscan -H 78.47.205.8 >> ~/.ssh/known_hosts
+      - name: Setup SSH Access
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Pull code and restart service
-      run: |
-        ssh root@78.47.205.8 << 'EOF'
-          cd /root/liebemama
-          git pull origin master
-          source venv/bin/activate
-          pip install -r requirements.txt
-          systemctl restart liebemama
-        EOF
+      - name: Deploy to Server
+        run: |
+          ssh -o StrictHostKeyChecking=no root@78.47.205.8 << 'EOF'
+            echo "🔁 Switching to project directory..."
+            cd /root/liebemama
+
+            echo "📦 Pulling latest code..."
+            git pull origin main
+
+            echo "🧪 Activating virtual environment..."
+            source venv/bin/activate
+
+            echo "📥 Installing dependencies..."
+            pip install -r requirements.txt
+
+            echo "🔁 Restarting service..."
+            sudo systemctl restart liebemama
+
+            echo "✅ Deployment complete!"
+          EOF

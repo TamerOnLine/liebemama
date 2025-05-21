@@ -11,7 +11,6 @@ from models.models_definitions import db, User, ErrorLog
 from routes import register_routes, register_error_handlers
 from config.logging_config import setup_logging
 
-# تحميل متغيرات البيئة
 load_dotenv()
 babel = Babel()
 
@@ -28,7 +27,7 @@ def create_app():
     app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'fallback-secret')
 
-    # ✅ تحميل متغيرات MINIO و SITE_NAME من البيئة إلى app.config
+
     for key, value in os.environ.items():
         if key.startswith("MINIO_") or key in ["DATABASE_URL", "SITE_NAME"]:
             app.config[key] = value

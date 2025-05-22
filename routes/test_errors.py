@@ -2,6 +2,8 @@ import os
 from flask import Blueprint, abort, render_template, current_app
 
 
+test_page = Blueprint('test_page', __name__, url_prefix='/test')
+
 test_errors_bp = Blueprint('test_errors', __name__, url_prefix='/test-errors')
 
 
@@ -91,3 +93,10 @@ def trigger_custom(code):
     """
     current_app.logger.info("Triggering custom error %d", code)
     abort(code)
+
+
+
+
+@test_page.route('/hello')
+def hello_page():
+    return "<h1 style='color:green;'>✅ صفحة مستقلة تعمل!</h1>"

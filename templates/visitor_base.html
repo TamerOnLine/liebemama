@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ get_locale() }}" dir="{{ 'rtl' if get_locale() == 'ar' else 'ltr' }}">
 <head>
@@ -10,60 +9,8 @@
   <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container d-flex justify-content-between align-items-center">
-      {% if current_user.is_authenticated and current_user.role == 'merchant' %}
-        <a class="navbar-brand text-primary {% if request.endpoint == 'merchant.dashboard' %}active-link{% endif %}" href="{{ url_for('merchant.dashboard') }}">
-          🛠️ {{ _('Merchant Dashboard') }}
-        </a>
-      {% elif current_user.is_authenticated and current_user.role == 'customer' %}
-        <a class="navbar-brand text-primary {% if request.endpoint == 'user_auth.dashboard' %}active-link{% endif %}" href="{{ url_for('user_auth.dashboard') }}">
-          🛠️ {{ _('Customer Dashboard') }}
-        </a>
-      {% elif current_user.is_authenticated and current_user.role == 'admin' %}
-        <a class="navbar-brand text-primary {% if request.endpoint == 'admin.admin_dashboard' %}active-link{% endif %}" href="{{ url_for('admin.admin_dashboard') }}">
-          🛠️ {{ _('Admin Dashboard') }}
-        </a>
-      {% endif %}
 
-      <div class="d-flex align-items-center">
-        {% if current_user.is_authenticated %}
-          <span class="text-primary me-3">{{ _('Welcome') }}, {{ current_user.username }}</span>
-
-          <a href="{{ url_for('notifications.show_notifications') }}" class="nav-link position-relative me-3">
-            🔔 <span class="nav-label">{{ _('Notifications') }}</span>
-            {% if unread_count and unread_count > 0 %}
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {{ unread_count }}
-              </span>
-            {% endif %}
-          </a>
-
-          <a href="{{ url_for('user_auth.logout') }}" class="btn btn-outline-primary btn-sm me-3" aria-label="Logout">
-            {{ _('Logout') }}
-          </a>
-        {% else %}
-          <a href="{{ url_for('user_auth.login') }}" class="btn btn-outline-primary btn-sm me-2">
-            {{ _('Login') }}
-          </a>
-          <a href="{{ url_for('user_auth.register') }}" class="btn btn-primary btn-sm me-3">
-            {{ _('Register') }}
-          </a>
-        {% endif %}
-
-        <div class="dropdown">
-          <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
-            🌐 <span class="nav-label">{{ _('Language') }}</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="{{ url_for('user_auth.set_language', lang='en') }}">En English</a></li>
-            <li><a class="dropdown-item" href="{{ url_for('user_auth.set_language', lang='ar') }}">Ar العربية</a></li>
-            <li><a class="dropdown-item" href="{{ url_for('user_auth.set_language', lang='de') }}">De Deutsch</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
+  {% include 'shared/_toolbar.html' %}
 
   <div class="container py-4">
     {% block visitor_content %}{% endblock %}

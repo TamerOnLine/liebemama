@@ -9,7 +9,8 @@ from routes.auth_utils import login_required
 from routes.minio_client import get_minio_client, get_minio_bucket
 from logic.decorators import log_exceptions
 
-product_images_bp = Blueprint('product_images', __name__)
+product_images_bp = Blueprint('product_images', __name__, url_prefix='/admin/products')
+
 
 
 @product_images_bp.route('/products/<int:product_id>/images')

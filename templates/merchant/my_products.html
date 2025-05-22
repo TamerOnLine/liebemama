@@ -43,11 +43,11 @@
                   <i class="bi bi-pencil"></i> {{ _('Edit') }}
                 </a>
 
-                <a href="{{ url_for('product_images.manage_product_images', product_id=product.id) }}"
+                <a href="{{ url_for('merchant.product_images.manage_product_images', product_id=product.id) }}"
                    class="btn btn-sm btn-outline-secondary mb-1">
                   🖼 {{ _('Images') }}
                 </a>
-                <a href="{{ url_for('product_ai.analyze_product', product_id=product.id) }}"
+                <a href="{{ url_for('merchant.product_ai.analyze_product', product_id=product.id) }}"
                   class="btn btn-sm btn-outline-info">
                   🧠 {{ _('Analyze') }}
                 </a>

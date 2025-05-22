@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('products.index') }}">📦 {{ _('My Product') }}</a>
+
+    {% if current_user.is_authenticated %}
+      {% if current_user.role == 'admin' %}
+        <a class="nav-link" href="{{ url_for('admin.admin_dashboard') }}">🛠️ {{ _('Admin Dashboard') }}</a>
+      {% elif current_user.role == 'merchant' %}
+        <a class="nav-link" href="{{ url_for('merchant.dashboard') }}">🛍️ {{ _('Merchant Dashboard') }}</a>
+      {% elif current_user.role == 'customer' %}
+        <a class="nav-link" href="{{ url_for('user_auth.dashboard') }}">👤 {{ _('Customer Dashboard') }}</a>
+      {% endif %}
+    {% endif %}
+
+    <div class="d-flex align-items-center ms-auto">
+      {% if current_user.is_authenticated %}
+        <span class="me-3 text-primary">{{ _('Hello') }}, {{ current_user.username }}</span>
+
+        <a href="{{ url_for('notifications.show_notifications') }}" class="nav-link position-relative">
+          🔔 <span class="nav-label">{{ _('Notifications') }}</span>
+          {% if unread_count and unread_count > 0 %}
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{ unread_count }}
+            </span>
+          {% endif %}
+        </a>
+
+        <a href="{{ url_for('user_auth.logout') }}" class="btn btn-outline-primary btn-sm ms-3">
+          🚪 {{ _('Logout') }}
+        </a>
+      {% else %}
+        <a href="{{ url_for('user_auth.login') }}" class="btn btn-outline-primary btn-sm me-2">
+          {{ _('Login') }}
+        </a>
+        <a href="{{ url_for('user_auth.register') }}" class="btn btn-primary btn-sm">
+          {{ _('Register') }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</nav>

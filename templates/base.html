@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ get_locale() }}" dir="{{ 'rtl' if get_locale() == 'ar' else 'ltr' }}">
 <head>
@@ -9,45 +8,8 @@
   <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">🏪 {{ _('MyStore') }}</a>
 
-      {% if current_user.is_authenticated and current_user.role == 'merchant' %}
-        <a class="navbar-brand text-white" href="{{ url_for('merchant.dashboard') }}">🛠️ {{ _('Dashboard') }}</a>
-      {% elif current_user.is_authenticated and current_user.role == 'customer' %}
-        <a class="navbar-brand text-white" href="{{ url_for('user_auth.dashboard') }}">🛠️ {{ _('Dashboard') }}</a>
-      {% elif current_user.is_authenticated and current_user.role == 'admin' %}
-        <a class="navbar-brand text-white" href="{{ url_for('admin.admin_dashboard') }}">🛠️ {{ _('Dashboard') }}</a>
-      {% endif %}
-
-      <div class="d-flex">
-        {% if current_user.is_authenticated %}
-          <span class="text-white me-3">Welcome, {{ current_user.username }}</span>
-
-          <a href="{{ url_for('notifications.show_notifications') }}" class="nav-link position-relative">
-            🔔 <span class="nav-label">{{ _('Notifications') }}</span>
-            {% if unread_count and unread_count > 0 %}
-              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {{ unread_count }}
-              </span>
-            {% endif %}
-          </a>
-
-          <a href="{{ url_for('user_auth.logout') }}" class="btn btn-outline-light btn-sm">
-            🚪 <span class="nav-label">{{ _('Logout') }}</span>
-          </a>
-        {% else %}
-          <a href="{{ url_for('user_auth.login') }}" class="btn btn-outline-light btn-sm me-2">
-            🚪 <span class="nav-label">{{ _('Login') }}</span>
-          </a>
-          <a href="{{ url_for('user_auth.register') }}" class="btn btn-light btn-sm">
-            ✍️ {{ _('Register') }}
-          </a>
-        {% endif %}
-      </div>
-    </div>
-  </nav>
+  {% include 'shared/_toolbar.html' %}
 
   <div class="container py-5">
     {% block content %}{% endblock %}

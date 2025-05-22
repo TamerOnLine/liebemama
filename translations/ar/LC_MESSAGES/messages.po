@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-18 16:43+0200\n"
+"POT-Creation-Date: 2025-05-22 17:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,43 +21,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: templates/admin_base.html:17
-msgid "MyProduct"
-msgstr "ميزة myprod"
-
-#: templates/admin_base.html:21 templates/admin_base.html:25
-#: templates/admin_base.html:29 templates/base.html:19 templates/base.html:21
-#: templates/base.html:23
-msgid "Dashboard"
-msgstr "لوحة القيادة"
-
-#: templates/admin_base.html:38 templates/base.html:31
-#: templates/visitor_base.html:36
-msgid "Notifications"
-msgstr "إشعارات"
-
-#: templates/admin_base.html:47 templates/base.html:40 templates/base.html:44
-#: templates/visitor_base.html:45
-msgid "Logout"
-msgstr "تسجيل الخروج"
-
-#: templates/admin_base.html:52 templates/base.html:52
-#: templates/merchant_base.html:32 templates/visitor_base.html:58
-msgid "Language"
-msgstr "لغة"
-
-#: templates/base.html:6
+#: templates/admin_base.html:5 templates/base.html:5
 msgid "My Website"
 msgstr "موقع الويب الخاص بي"
-
-#: templates/base.html:16
-msgid "MyStore"
-msgstr "ميستور"
-
-#: templates/auth/register.html:50 templates/base.html:47
-#: templates/visitor_base.html:52
-msgid "Register"
-msgstr "يسجل"
 
 #: templates/index.html:3
 msgid "All Products"
@@ -71,40 +37,16 @@ msgstr "عرض التفاصيل"
 msgid "No products available to display at the moment."
 msgstr "لا توجد منتجات متاحة لعرضها في الوقت الحالي."
 
-#: templates/visitor_base.html:6
+#: templates/visitor_base.html:5
 msgid "Our Products"
 msgstr "منتجاتنا"
 
-#: templates/merchant/dashboard.html:2 templates/merchant/dashboard.html:6
-#: templates/visitor_base.html:19
-msgid "Merchant Dashboard"
-msgstr "لوحة القيادة التجارية"
-
-#: templates/auth/dashboard.html:2 templates/visitor_base.html:23
-msgid "Customer Dashboard"
-msgstr "لوحة معلومات العملاء"
-
-#: templates/admin/dashboard.html:2 templates/admin/dashboard.html:6
-#: templates/visitor_base.html:27
-msgid "Admin Dashboard"
-msgstr "لوحة معلومات المشرف"
-
-#: templates/admin/dashboard.html:7 templates/auth/dashboard.html:6
-#: templates/merchant/dashboard.html:7 templates/visitor_base.html:33
-msgid "Welcome"
-msgstr "مرحباً"
-
-#: templates/auth/login.html:2 templates/auth/login.html:5
-#: templates/auth/login.html:30 templates/visitor_base.html:49
-msgid "Login"
-msgstr "تسجيل الدخول"
-
-#: templates/visitor_base.html:75
+#: templates/visitor_base.html:20
 msgid "All Rights Reserved"
 msgstr "جميع الحقوق محفوظة"
 
-#: templates/admin/add_product.html:2 templates/admin/add_product.html:9
-#: templates/admin/admin_products.html:9 templates/admin/dashboard.html:14
+#: templates/admin/add_product.html:2 templates/admin/add_product.html:8
+#: templates/admin/admin_products.html:8 templates/admin/dashboard.html:13
 #: templates/merchant/add_product.html:2 templates/merchant/add_product.html:9
 #: templates/merchant/my_products.html:9
 msgid "Add New Product"
@@ -114,98 +56,120 @@ msgstr "أضف منتجًا جديدًا"
 msgid "Product Management"
 msgstr "إدارة المنتج"
 
-#: templates/admin/admin_products.html:5 templates/merchant/my_products.html:5
+#: templates/admin/admin_products.html:4 templates/merchant/my_products.html:5
 msgid "Product List"
 msgstr "قائمة المنتج"
 
-#: templates/admin/admin_products.html:18
+#: templates/admin/admin_products.html:17
 #: templates/merchant/my_products.html:18
 msgid "Image"
 msgstr "صورة"
 
-#: templates/admin/admin_products.html:19 templates/auth/profile.html:11
+#: templates/admin/admin_products.html:18 templates/auth/profile.html:11
 #: templates/merchant/my_products.html:19
 msgid "Name"
 msgstr "اسم"
 
-#: templates/admin/admin_products.html:20
+#: templates/admin/admin_products.html:19
 #: templates/merchant/my_products.html:20 templates/shared/product_form.html:12
 msgid "Price"
 msgstr "سعر"
 
-#: templates/admin/admin_products.html:21
+#: templates/admin/admin_products.html:20
 #: templates/merchant/my_products.html:21
 msgid "Actions"
 msgstr "الإجراءات"
 
-#: templates/admin/admin_products.html:42
+#: templates/admin/admin_products.html:41
 #: templates/merchant/my_products.html:43
 msgid "Edit"
 msgstr "يحرر"
 
-#: templates/admin/admin_products.html:45
+#: templates/admin/admin_products.html:44
 #: templates/merchant/my_products.html:48
 msgid "Images"
 msgstr "الصور"
 
-#: templates/admin/admin_products.html:49
+#: templates/admin/admin_products.html:48
 #: templates/merchant/my_products.html:52
 msgid "Analyze"
 msgstr "تحليل"
 
-#: templates/admin/admin_products.html:55
+#: templates/admin/admin_products.html:54
 msgid "Are you sure you want to delete this product?"
 msgstr "هل أنت متأكد من أنك تريد حذف هذا المنتج؟"
 
-#: templates/admin/admin_products.html:57
-#: templates/shared/manage_images.html:32
+#: templates/admin/admin_products.html:56
+#: templates/shared/manage_images_content.html:29
 msgid "Delete"
 msgstr "يمسح"
 
-#: templates/admin/admin_products.html:64
+#: templates/admin/admin_products.html:63
 msgid "Approve"
 msgstr "يعتمد"
 
-#: templates/admin/admin_products.html:68
+#: templates/admin/admin_products.html:67
 #: templates/merchant/my_products.html:57
 msgid "Approved"
 msgstr "موافقة"
 
-#: templates/admin/admin_products.html:77
+#: templates/admin/admin_products.html:76
 #: templates/merchant/my_products.html:68
 msgid "No products available at the moment."
 msgstr "لا توجد منتجات متوفرة في الوقت الحالي."
 
-#: templates/admin/dashboard.html:11
+#: templates/admin/dashboard.html:2 templates/admin/dashboard.html:5
+#: templates/shared/_toolbar.html:7
+msgid "Admin Dashboard"
+msgstr "لوحة معلومات المشرف"
+
+#: templates/admin/dashboard.html:6 templates/auth/dashboard.html:6
+#: templates/merchant/dashboard.html:7
+msgid "Welcome"
+msgstr "مرحباً"
+
+#: templates/admin/dashboard.html:10
 msgid "Manage Products"
 msgstr "إدارة المنتجات"
 
-#: templates/admin/dashboard.html:17 templates/admin/system_links.html:2
-#: templates/admin/system_links.html:5
+#: templates/admin/dashboard.html:16 templates/admin/system_links.html:2
+#: templates/admin/system_links.html:4
 msgid "System Links"
 msgstr "روابط النظام"
 
-#: templates/admin/edit_product.html:2 templates/admin/edit_product.html:6
+#: templates/admin/edit_product.html:2 templates/admin/edit_product.html:5
 #: templates/merchant/edit_product.html:2
 #: templates/merchant/edit_product.html:9
 msgid "Edit Product"
 msgstr "تحرير المنتج"
 
-#: templates/admin/system_links.html:9
+#: templates/admin/edit_product.html:30 templates/merchant/edit_product.html:24
+msgid "Manage Images"
+msgstr "إدارة الصور"
+
+#: templates/admin/manage_images.html:2 templates/merchant/manage_images.html:2
+msgid "Manage Product Images"
+msgstr "إدارة صور المنتج"
+
+#: templates/admin/system_links.html:8
 msgid "Database"
 msgstr "قاعدة البيانات"
 
-#: templates/admin/system_links.html:14
+#: templates/admin/system_links.html:13
 msgid "App Deployment"
 msgstr "نشر التطبيق"
 
-#: templates/admin/system_links.html:19
+#: templates/admin/system_links.html:18
 msgid "Media Library"
 msgstr "مكتبة الوسائط"
 
-#: templates/admin/system_links.html:24
+#: templates/admin/system_links.html:23
 msgid "Monitoring"
 msgstr "يراقب"
+
+#: templates/auth/dashboard.html:2 templates/shared/_toolbar.html:11
+msgid "Customer Dashboard"
+msgstr "لوحة معلومات العملاء"
 
 #: templates/auth/dashboard.html:7
 msgid "Welcome to your customer dashboard."
@@ -251,6 +215,11 @@ msgstr "هل أنت متأكد من أنك تريد حذف حسابك؟"
 msgid "Delete Account"
 msgstr "حذف الحساب"
 
+#: templates/auth/login.html:2 templates/auth/login.html:5
+#: templates/auth/login.html:36 templates/shared/_toolbar.html:33
+msgid "Login"
+msgstr "تسجيل الدخول"
+
 #: templates/auth/login.html:15
 msgid "Email or Username"
 msgstr "البريد الإلكتروني أو اسم المستخدم"
@@ -259,7 +228,7 @@ msgstr "البريد الإلكتروني أو اسم المستخدم"
 msgid "Password"
 msgstr "كلمة المرور"
 
-#: templates/auth/login.html:35
+#: templates/auth/login.html:41
 msgid "Don't have an account? Sign up"
 msgstr "ليس لديك حساب؟ اشتراك"
 
@@ -295,6 +264,10 @@ msgstr "عميل"
 #: templates/auth/register.html:43
 msgid "Merchant"
 msgstr "تاجر"
+
+#: templates/auth/register.html:50 templates/shared/_toolbar.html:36
+msgid "Register"
+msgstr "يسجل"
 
 #: templates/errors/401.html:40
 msgid "Please log in to access this page"
@@ -365,6 +338,11 @@ msgstr "يرجى مراجعة الأخطاء التالية وحاول مرة أ
 msgid "Back"
 msgstr "خلف"
 
+#: templates/merchant/dashboard.html:2 templates/merchant/dashboard.html:6
+#: templates/shared/_toolbar.html:9
+msgid "Merchant Dashboard"
+msgstr "لوحة القيادة التجارية"
+
 #: templates/merchant/dashboard.html:8
 msgid "From here, you can manage your store's products."
 msgstr "من هنا ، يمكنك إدارة منتجات متجرك."
@@ -393,6 +371,22 @@ msgstr "موافقة معلقة"
 msgid "My Personal Information"
 msgstr "معلوماتي الشخصية"
 
+#: templates/shared/_toolbar.html:3
+msgid "My Product"
+msgstr "منتجي"
+
+#: templates/shared/_toolbar.html:17
+msgid "Hello"
+msgstr "مرحبًا"
+
+#: templates/shared/_toolbar.html:20
+msgid "Notifications"
+msgstr "إشعارات"
+
+#: templates/shared/_toolbar.html:29
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
 #: templates/shared/analyze_product.html:4
 msgid "Nutritional Analysis"
 msgstr "التحليل الغذائي"
@@ -410,37 +404,37 @@ msgstr "لا يوجد وصف متاح."
 msgid "Generate AI Analysis (coming soon)"
 msgstr "توليد تحليل الذكاء الاصطناعي (قريبا)"
 
-#: templates/shared/manage_images.html:5
-msgid "Manage Images for"
-msgstr "إدارة الصور ل"
+#: templates/shared/manage_images_content.html:1
+msgid "📸 Manage Product Images for"
+msgstr "📸 إدارة صور المنتج لـ"
 
-#: templates/shared/manage_images.html:23
+#: templates/shared/manage_images_content.html:5
+msgid "No images uploaded for this product yet."
+msgstr "لا توجد صور تم تحميلها لهذا المنتج حتى الآن."
+
+#: templates/shared/manage_images_content.html:19
 msgid "Main Image"
 msgstr "الصورة الرئيسية"
 
-#: templates/shared/manage_images.html:25
+#: templates/shared/manage_images_content.html:21
 msgid "Set as Main"
 msgstr "تم تعيينها كما هو الحال"
 
-#: templates/shared/manage_images.html:30
+#: templates/shared/manage_images_content.html:27
 msgid "Are you sure you want to delete this image?"
 msgstr "هل أنت متأكد من أنك تريد حذف هذه الصورة؟"
 
-#: templates/shared/manage_images.html:41
+#: templates/shared/manage_images_content.html:39
 msgid "Upload New Image"
 msgstr "تحميل صورة جديدة"
 
-#: templates/shared/manage_images.html:43
+#: templates/shared/manage_images_content.html:41
 msgid "Add Image"
 msgstr "أضف الصورة"
 
-#: templates/shared/manage_images.html:50
+#: templates/shared/manage_images_content.html:47
 msgid "Back to Products"
 msgstr "العودة إلى المنتجات"
-
-#: templates/shared/manage_images.html:54
-msgid "Back to My Products"
-msgstr "العودة إلى منتجاتي"
 
 #: templates/shared/product_form.html:2
 msgid "Product Name"

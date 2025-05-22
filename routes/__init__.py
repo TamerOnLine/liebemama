@@ -7,6 +7,9 @@ from routes.notifications_view import notifications_bp
 from flask import render_template
 from werkzeug.routing import BuildError
 from routes.test_errors import test_errors_bp
+from routes.test_errors import test_page
+
+
 from routes.product_images_view import product_images_bp
 from routes.product_ai import product_ai_bp
 # from routes.minio_client import minio_client, MINIO_BUCKET, MINIO_BASE_URL
@@ -37,6 +40,7 @@ def register_routes(app):
     app.register_blueprint(test_errors_bp)  # Test routes for error handling (useful in dev mode)
     app.register_blueprint(product_images_bp)
     app.register_blueprint(product_ai_bp)
+    app.register_blueprint(test_page)
 
 
 

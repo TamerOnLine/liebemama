@@ -8,6 +8,9 @@ on:
 jobs:
   deploy:
     name: Deploy via SSH to Hetzner
+    if: github.actor != 'TamerOnLine'
+    environment:
+      name: production
     runs-on: ubuntu-latest
 
     steps:

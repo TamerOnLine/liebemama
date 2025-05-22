@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
 db = SQLAlchemy()
 
 class Product(db.Model):
@@ -179,8 +180,7 @@ class NutritionalAnalysis(db.Model):
 
 
 
-from datetime import datetime
-from models.models_definitions import db
+
 
 class AdminLog(db.Model):
     __tablename__ = 'admin_logs'

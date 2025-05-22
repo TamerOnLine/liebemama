@@ -20,6 +20,7 @@ def manage_product_images(product_id):
     role = session.get('role')
     user_id = session.get('user_id')
 
+    # التحقق من صلاحية التاجر
     if role == 'merchant' and product.merchant_id != user_id:
         current_app.logger.warning(
             "Unauthorized access by merchant %s to product %s",
@@ -27,7 +28,23 @@ def manage_product_images(product_id):
         )
         abort(403)
 
-    return render_template('shared/manage_images.html', product=product)
+    # مسار العودة حسب الدور
+    if role == 'admin':
+        back_url = url_for('admin.admin_products')
+    elif role == 'merchant':
+        back_url = url_for('merchant.my_products')
+    else:
+        back_url = url_for('products.index')  # fallback
+
+    # اختيار القالب المناسب
+    template = 'admin/manage_images.html' if role == 'admin' else 'merchant/manage_images.html'
+
+    return render_template(
+        template,
+        product=product,
+        back_url=back_url
+    )
+
 
 
 @product_images_bp.route('/images/<int:image_id>/set-main', methods=['POST'])
@@ -47,7 +64,11 @@ def set_main_image(image_id):
 
     db.session.commit()
     flash("Image set as main successfully.", "success")
-    return redirect(request.referrer or url_for('merchant.my_products'))
+    
+    if role == 'admin':
+        return redirect(url_for('admin.admin_products'))
+    else:
+        return redirect(url_for('merchant.my_products'))
 
 
 @product_images_bp.route('/products/<int:product_id>/upload', methods=['POST'])
@@ -98,7 +119,12 @@ def upload_image(product_id):
     db.session.commit()
 
     flash("Image uploaded successfully.", "success")
-    return redirect(request.referrer or url_for('merchant.my_products'))
+
+    if role == 'admin':
+        return redirect(url_for('admin.admin_products'))
+    else:
+        return redirect(url_for('merchant.my_products'))
+
 
 
 @product_images_bp.route('/images/<int:image_id>/delete', methods=['POST'])
@@ -127,4 +153,8 @@ def delete_image(image_id):
     db.session.commit()
     flash("Image deleted successfully.", "success")
 
-    return redirect(request.referrer or url_for('merchant.my_products'))
+    if role == 'admin':
+        return redirect(url_for('admin.admin_products'))
+    else:
+        return redirect(url_for('merchant.my_products'))
+

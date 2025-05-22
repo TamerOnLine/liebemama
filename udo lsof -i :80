@@ -1,0 +1,19 @@
+[0;1;32m●[0m gunicorn.service - Gunicorn daemon for Liebemama Flask app
+     Loaded: loaded (]8;;file://liebe-server/etc/systemd/system/gunicorn.service/etc/systemd/system/gunicorn.service]8;;; [0;1;38;5;185mdisabled[0m; preset: [0;1;32menabled[0m)
+     Active: [0;1;32mactive (running)[0m since Mon 2025-05-19 22:19:48 UTC; 2s ago
+   Main PID: 31095 (gunicorn)
+      Tasks: 1 (limit: 4540)
+     Memory: 13.6M (peak: 13.8M)
+        CPU: 140ms
+     CGroup: /system.slice/gunicorn.service
+             └─[0;38;5;245m31095 /root/liebemama/venv/bin/python3 /root/liebemama/venv/bin/gunicorn -w 4 -b 0.0.0.0:80 myapp:app[0m
+
+May 19 22:19:48 liebe-server systemd[1]: gunicorn.service: Scheduled restart job, restart counter is at 1.
+May 19 22:19:48 liebe-server systemd[1]: Started gunicorn.service - Gunicorn daemon for Liebemama Flask app.
+May 19 22:19:48 liebe-server gunicorn[31095]: [2025-05-19 22:19:48 +0000] [31095] [INFO] Starting gunicorn 23.0.0
+May 19 22:19:48 liebe-server gunicorn[31095]: [2025-05-19 22:19:48 +0000] [31095] [ERROR] Connection in use: ('0.0.0.0', 80)
+May 19 22:19:48 liebe-server gunicorn[31095]: [2025-05-19 22:19:48 +0000] [31095] [ERROR] connection to ('0.0.0.0', 80) failed: [Errno 98] Address already in use
+May 19 22:19:49 liebe-server gunicorn[31095]: [2025-05-19 22:19:49 +0000] [31095] [ERROR] Connection in use: ('0.0.0.0', 80)
+May 19 22:19:49 liebe-server gunicorn[31095]: [2025-05-19 22:19:49 +0000] [31095] [ERROR] connection to ('0.0.0.0', 80) failed: [Errno 98] Address already in use
+May 19 22:19:50 liebe-server gunicorn[31095]: [2025-05-19 22:19:50 +0000] [31095] [ERROR] Connection in use: ('0.0.0.0', 80)
+May 19 22:19:50 liebe-server gunicorn[31095]: [2025-05-19 22:19:50 +0000] [31095] [ERROR] connection to ('0.0.0.0', 80) failed: [Errno 98] Address already in use

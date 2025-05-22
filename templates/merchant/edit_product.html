@@ -18,6 +18,14 @@
     {% endif %}
   {% endwith %}
 
+ <div class="text-center mt-4">
+  <a href="{{ url_for('product_images.manage_product_images', product_id=product.id) }}"
+     class="btn btn-outline-secondary">
+    🖼️ {{ _("Manage Images") }}
+  </a>
+</div>
+ 
+
   <form method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm w-100 w-md-50 mx-auto mt-4">
     {% include 'shared/product_form.html' %}
   </form>

@@ -2,6 +2,12 @@ from flask import current_app, session
 from minio import Minio
 
 
+
+
+
+
+
+
 def get_minio_client():
     """
     Initialize and return a MinIO client using app configuration.
@@ -11,9 +17,9 @@ def get_minio_client():
     """
     return Minio(
         current_app.config["MINIO_ENDPOINT"],
-        access_key=current_app.config["MINIO_ACCESS_KEY"],
-        secret_key=current_app.config["MINIO_SECRET_KEY"],
-        secure=True
+        access_key=current_app.config["MINIO_ROOT_USER"],
+        secret_key=current_app.config["MINIO_ROOT_PASSWORD"],
+        secure = current_app.config.get("MINIO_USE_HTTPS", "False").lower() == "true"
     )
 
 

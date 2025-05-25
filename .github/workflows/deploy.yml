@@ -21,9 +21,10 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh -o StrictHostKeyChecking=no root@78.47.205.8 << 'EOF'
+          ssh -p 4476 -o StrictHostKeyChecking=no tamer@78.47.205.8 << 'EOF'
             echo "🔁 Switching to project directory..."
-            cd /root/liebemama
+            cd /home/tamer/liebemama
+
 
             echo "📦 Pulling latest code..."
             git pull origin main

@@ -32,3 +32,7 @@ generate_flask_structure.py
 
 # Ignore locally uploaded images (if applicable)
 # Add specific patterns if known (e.g., /uploads/, *.jpg, *.png)
+
+.bash_history
+.pgpass
+

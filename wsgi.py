@@ -1,2 +1,4 @@
-from myapp import create_app
-application = create_app()
+# wsgi.py
+from myapp import app
+if __name__ == "__main__":
+    app.run()

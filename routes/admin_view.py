@@ -237,3 +237,9 @@ def view_errors():
     from models.models_definitions import ErrorLog
     logs = ErrorLog.query.order_by(ErrorLog.timestamp.desc()).limit(50).all()
     return render_template("admin/error_logs.html", logs=logs)
+
+
+@admin_bp.route('/service-instructions')
+@login_required
+def service_instructions():
+    return render_template('static_pages/service_instructions.html')

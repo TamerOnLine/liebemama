@@ -6,7 +6,7 @@ from flask import (
 )
 from models.models_definitions import db, ProductImage, Product
 from routes.auth_utils import login_required
-from routes.minio_client import get_minio_client, get_minio_bucket
+from routes.minio_client import get_minio_client, get_minio_bucket, get_minio_base_url
 from logic.decorators import log_exceptions
 
 product_images_bp = Blueprint('product_images', __name__)
@@ -67,7 +67,7 @@ def upload_image(product_id):
         return redirect(request.referrer)
 
     filename = secure_filename(image_file.filename)
-    folder = f"products/{role}/{user_id}/product_{product.id}"
+    folder = f"products/{product.merchant.role}/{product.merchant.id}/product_{product.id}"
     object_key = f"{folder}/{uuid.uuid4().hex}_{filename}"
 
     image_data = image_file.read()
@@ -88,7 +88,7 @@ def upload_image(product_id):
         content_type=image_file.content_type
     )
 
-    image_url = f"https://files.liebemama.com/{bucket_name}/{object_key}"
+    image_url = f"{get_minio_base_url().rstrip('/')}/{bucket_name}/{object_key}"
     new_image = ProductImage(
         product_id=product.id,
         image_url=image_url,
@@ -116,15 +116,12 @@ def delete_image(image_id):
     if img.image_url and 'files.liebemama.com' in img.image_url:
         minio_client = get_minio_client()
         bucket_name = get_minio_bucket()
-
-        prefix = f"https://files.liebemama.com/{bucket_name}/"
+        prefix = f"{get_minio_base_url().rstrip('/')}/{bucket_name}/"
         object_key = img.image_url.replace(prefix, "")
-
         current_app.logger.info("Removing from MinIO: %s", object_key)
         minio_client.remove_object(bucket_name, object_key)
 
     db.session.delete(img)
     db.session.commit()
     flash("Image deleted successfully.", "success")
-
     return redirect(request.referrer or url_for('merchant.my_products'))

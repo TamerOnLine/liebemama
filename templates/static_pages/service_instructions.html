@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تعليمات الخدمة</title>
+  <style>
+    body { font-family: 'Arial', sans-serif; background: #f8f9fa; padding: 2rem; direction: rtl; }
+    .card {
+      background: #fff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .code {
+      background: #f1f1f1;
+      padding: 0.5rem;
+      font-family: monospace;
+      direction: ltr;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .code:hover {
+      background-color: #e2e6ea;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🚀 إدارة خدمة liebemama</h2>
+
+  <div class="card">
+    <strong>▶️ لتشغيل الخدمة:</strong>
+    <div class="code" onclick="copyText(this)">sudo systemctl start liebemama</div>
+  </div>
+
+  <div class="card">
+    <strong>⏹ لإيقاف الخدمة:</strong>
+    <div class="code" onclick="copyText(this)">sudo systemctl stop liebemama</div>
+  </div>
+
+  <div class="card">
+    <strong>🔄 لإعادة تشغيل الخدمة:</strong>
+    <div class="code" onclick="copyText(this)">sudo systemctl restart liebemama</div>
+  </div>
+
+  <div class="card">
+    <strong>📄 لمراقبة السجل في الوقت الحقيقي:</strong>
+    <div class="code" onclick="copyText(this)">sudo journalctl -u liebemama -f</div>
+  </div>
+
+  <script>
+    function copyText(element) {
+      navigator.clipboard.writeText(element.textContent);
+      element.textContent = "✅ تم النسخ!";
+      setTimeout(() => {
+        element.textContent = element.dataset.original || element.innerText;
+      }, 1200);
+    }
+  </script>
+
+</body>
+</html>

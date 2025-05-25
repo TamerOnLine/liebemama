@@ -9,11 +9,15 @@ def get_minio_client():
     Returns:
         Minio: Configured MinIO client instance.
     """
+
+    print("🔍 SECURE =", current_app.config.get("MINIO_SECURE"))
+
     return Minio(
         current_app.config["MINIO_ENDPOINT"],
         access_key=current_app.config["MINIO_ACCESS_KEY"],
         secret_key=current_app.config["MINIO_SECRET_KEY"],
-        secure=True
+        secure=current_app.config.get("MINIO_SECURE", "false").lower() == "true"
+
     )
 
 

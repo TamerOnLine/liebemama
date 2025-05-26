@@ -1,0 +1,68 @@
+name: 💡 Feature request
+description: Suggest a new feature or improvement
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a feature! Please fill out all fields below.
+
+  - type: textarea
+    id: feature
+    attributes:
+      label: ✨ Describe the feature
+      description: A clear and concise description.
+      placeholder: e.g. "Generate AI-based product descriptions"
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 🔍 Problem it solves
+      description: Why is this needed?
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: 📐 Proposed solution
+      description: How should it work?
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 📊 Priority
+      options:
+        - Low
+        - Medium
+        - High
+      required: true
+
+  - type: checkboxes
+    id: related
+    attributes:
+      label: 📦 Related areas
+      options:
+        - label: Admin Panel
+          value: admin
+        - label: Merchant Dashboard
+          value: merchant
+        - label: Notifications
+          value: notifications
+        - label: Product Management
+          value: product
+
+  - type: input
+    id: other
+    attributes:
+      label: Other (if not listed)
+      required: false
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: ✅ Acceptance criteria
+      description: List conditions for “done”.
+      required: true

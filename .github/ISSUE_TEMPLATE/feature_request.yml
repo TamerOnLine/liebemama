@@ -15,7 +15,6 @@ body:
       label: "✨ Describe the feature"
       description: "A clear and concise description of the feature."
       placeholder: "e.g. Generate AI-based product descriptions"
-      required: true
 
   - type: textarea
     id: problem
@@ -23,14 +22,12 @@ body:
       label: "🔍 Problem it solves"
       description: "Why is this needed?"
       placeholder: "e.g. Merchants lack time to write descriptions manually"
-      required: true
 
   - type: textarea
     id: solution
     attributes:
       label: "📐 Proposed solution"
       description: "How should it work? (screens, API, logic)"
-      required: true
 
   - type: dropdown
     id: priority
@@ -41,29 +38,22 @@ body:
         - Low
         - Medium
         - High
-      required: true
 
   - type: checkboxes
     id: related_areas
     attributes:
       label: "📦 Related areas"
-      description: "Select modules affected by this feature"
       options:
-        - label: Admin Panel
-          value: admin
-        - label: Merchant Dashboard
-          value: merchant
-        - label: Notifications
-          value: notifications
-        - label: Product Management
-          value: product
+        - Admin Panel
+        - Merchant Dashboard
+        - Notifications
+        - Product Management
 
   - type: textarea
     id: acceptance
     attributes:
       label: "✅ Acceptance criteria"
       description: "List the conditions that must be met for this feature to be considered done."
-      required: true
 
   - type: input
     id: references

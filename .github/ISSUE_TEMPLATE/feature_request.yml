@@ -1,39 +1,42 @@
-name: 💡 Feature request
+name: 💡 Feature Request
 description: Suggest a new feature or improvement
 title: "[Feature] "
-labels: ["enhancement"]
+labels:
+  - enhancement
 body:
   - type: markdown
     attributes:
       value: |
         Thank you for suggesting a feature! Please fill out all fields below.
 
-  - type: textarea
+  - type: input
     id: feature
     attributes:
-      label: ✨ Describe the feature
-      description: A clear and concise description.
-      placeholder: e.g. "Generate AI-based product descriptions"
+      label: "✨ Describe the feature"
+      description: "A clear and concise description of the feature."
+      placeholder: "e.g. Generate AI-based product descriptions"
       required: true
 
   - type: textarea
     id: problem
     attributes:
-      label: 🔍 Problem it solves
-      description: Why is this needed?
+      label: "🔍 Problem it solves"
+      description: "Why is this needed?"
+      placeholder: "e.g. Merchants lack time to write descriptions manually"
       required: true
 
   - type: textarea
     id: solution
     attributes:
-      label: 📐 Proposed solution
-      description: How should it work?
+      label: "📐 Proposed solution"
+      description: "How should it work? (screens, API, logic)"
       required: true
 
   - type: dropdown
     id: priority
     attributes:
-      label: 📊 Priority
+      label: "📊 Priority"
+      description: "Select the priority level"
       options:
         - Low
         - Medium
@@ -41,9 +44,10 @@ body:
       required: true
 
   - type: checkboxes
-    id: related
+    id: related_areas
     attributes:
-      label: 📦 Related areas
+      label: "📦 Related areas"
+      description: "Select modules affected by this feature"
       options:
         - label: Admin Panel
           value: admin
@@ -54,15 +58,15 @@ body:
         - label: Product Management
           value: product
 
-  - type: input
-    id: other
-    attributes:
-      label: Other (if not listed)
-      required: false
-
   - type: textarea
     id: acceptance
     attributes:
-      label: ✅ Acceptance criteria
-      description: List conditions for “done”.
+      label: "✅ Acceptance criteria"
+      description: "List the conditions that must be met for this feature to be considered done."
       required: true
+
+  - type: input
+    id: references
+    attributes:
+      label: "🔗 References (optional)"
+      description: "Links to designs, docs, or related issues"

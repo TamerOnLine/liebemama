@@ -180,6 +180,7 @@ git push origin your-feature-name
 
 ## 📄 License
 
-This project is licensed under the [MIT License](./LICENSE).
+Licensed under the [Apache License, Version 2.0](./LICENSE).  
+You may obtain a copy of the License in the project root.
 
 ---

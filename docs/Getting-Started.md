@@ -3,7 +3,7 @@
 ## 🧩 Requirements
 
 - Python 3.10+
-- PostgreSQL / Supabase
+- PostgreSQL (self-hosted on Hetzner)
 - MinIO
 - Gunicorn + Nginx
 - Flask
@@ -19,7 +19,7 @@ pip install -r requirements.txt
 ## 🚀 Run Local Server
 
 ```bash
-python app.py
+python myapp.py
 # or
 flask run --host=0.0.0.0 --port=8030
 ```

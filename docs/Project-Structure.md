@@ -2,19 +2,21 @@
 
 Modular structure for clean maintainability and scalability.
 
-```
 .
-├── api/            # API endpoints
-├── config/         # Environment settings
-├── logic/          # Business logic
-├── models/         # Database models
-├── routes/         # Flask route handlers
-├── scripts/        # Automation scripts
-├── static/         # Static files (images, CSS, JS)
-├── templates/      # HTML templates (Jinja2)
-├── tools/          # Helper tools
-├── translations/   # Multilingual support
-├── utils/          # Reusable utilities
-├── workspace/      # Sandbox or drafts
-└── .github/        # CI/CD workflows
-```
+├── api/             # API endpoints (RESTful or internal services)
+├── config/          # Configuration files and environment settings
+├── logic/           # Core business logic
+├── models/          # Database models (e.g. SQLAlchemy)
+├── routes/          # Route definitions using Flask Blueprints
+├── scripts/         # Utility scripts for automation and deployment
+├── static/          # Static assets (CSS, JS, images, fonts)
+├── templates/       # HTML templates (Jinja2)
+├── tools/           # Custom tools and utilities
+├── translations/    # Language translation files (.po / .mo)
+├── utils/           # Shared helper functions and utilities
+├── workspace/       # Experimental or sandbox components
+├── docs/            # Project documentation and design references
+├── .github/         # GitHub Actions and workflow configurations
+
+
+

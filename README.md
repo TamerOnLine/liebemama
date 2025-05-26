@@ -132,10 +132,49 @@ python i18n.py
 
 ---
 
+## 🔀 Branch Strategy
+
+The project uses Git branches to separate environments and development tasks.
+
+### 📌 Main Branches
+
+- `main`: Stable production-ready code.
+- `dev`: Ongoing development, testing new features before merging to `main`.
+
+### 🌱 Feature Branches
+
+Developers can use custom feature branches such as:
+
+- `docs-update` – for documentation updates
+- `auth-refactor` – for rewriting authentication logic
+- `admin-ui-enhance` – for UI improvements on admin side
+
+### 🧩 Switch Between Branches
+
+To switch to an existing branch:
+
+```bash
+git checkout dev
+```
+
+To create a new feature branch:
+
+```bash
+git checkout -b your-feature-name
+```
+
+Push the new branch to GitHub:
+
+```bash
+git push origin your-feature-name
+```
+
+---
+
 ## ✍️ Author
 
 **Tamer Hamad Faour**  
-[GitHub](https://github.com/TamerOnLine) • [LinkedIn](https://www.linkedin.com/in/tameronline/) • [YouTube: Tamer On Pi](https://www.youtube.com/@TamerOnPi)
+[GitHub](https://github.com/TamerOnLine) • [LinkedIn](https://www.linkedin.com/in/tameronline/) • [YouTube: Tamer On Pi](https://www.youtube.com/@mystrotamer)
 
 ---
 
